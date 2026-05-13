@@ -7,27 +7,37 @@ import java.util.List;
 @Entity
 @Table(name = "cliente")
 public class Cliente {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente")
     private Long idCliente;
 
-    @Column(name = "primer_nombre", nullable = false)
-    private String primerNombre;
-    @Column(name = "segundo_nombre")
-    private String segundoNombre;
-    @Column(name = "primer_apellido", nullable = false)
-    private String primerApellido;
-    @Column(name = "segundo_apellido")
-    private String segundoApellido;
     @Column(name = "numero_documento", unique = true, nullable = false)
     private String numeroDocumento;
-    @Column(name = "tipo_documento", nullable = false)
+
+    @Column(name = "tipo_documento")
     private String tipoDocumento;
+
+    @Column(name = "primer_nombre", nullable = false)
+    private String primerNombre;
+
+    @Column(name = "segundo_nombre")
+    private String segundoNombre;
+
+    @Column(name = "primer_apellido", nullable = false)
+    private String primerApellido;
+
+    @Column(name = "segundo_apellido")
+    private String segundoApellido;
+
     private String telefono;
     private String email;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Asistencia> asistencias;
+
+    @OneToMany(mappedBy = "cliente")
     private List<Suscripcion> suscripciones;
 
     public Cliente() {}

@@ -8,44 +8,41 @@ import co.edu.unbosque.model.request.AsistenciaDTO;
 import co.edu.unbosque.repository.AsistenciaRepository;
 import co.edu.unbosque.repository.ClienteRepository;
 import co.edu.unbosque.repository.SesionRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AsistenciaService {
 
     private final AsistenciaRepository asistenciaRepository;
-    private final SesionRepository sesionRepository;
     private final ClienteRepository clienteRepository;
+    private final SesionRepository sesionRepository;
 
     public AsistenciaService(AsistenciaRepository asistenciaRepository,
-                             SesionRepository sesionRepository,
-                             ClienteRepository clienteRepository) {
+                             ClienteRepository clienteRepository,
+                             SesionRepository sesionRepository) {
         this.asistenciaRepository = asistenciaRepository;
-        this.sesionRepository = sesionRepository;
         this.clienteRepository = clienteRepository;
+        this.sesionRepository = sesionRepository;
     }
 
-    @Transactional
     public void registrarAsistencia(AsistenciaDTO dto) {
-        Sesion sesion = sesionRepository.findById(dto.idSesion())
-                .orElseThrow(() -> new RuntimeException("Sesión no encontrada"));
-
-        if (sesion.getCuposDisponibles() <= 0) {
-            throw new RuntimeException("No hay cupos disponibles");
-        }
-
         Cliente cliente = clienteRepository.findById(dto.idCliente())
                 .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
 
-        Asistencia a = new Asistencia();
-        a.setEstadoAsistencia(EstadoAsistencia.PRESENTE);
-        a.setCliente(cliente);
-        a.setSesion(sesion);
+        Sesion sesion = sesionRepository.findById(dto.idSesion())
+                .orElseThrow(() -> new RuntimeException("Sesión no encontrada"));
 
-        asistenciaRepository.save(a);
+        Asistencia asistencia = new Asistencia();
+        asistencia.setCliente(cliente);
+        asistencia.setSesion(sesion);
+        asistencia.setEstadoAsistencia(EstadoAsistencia.PRESENTE);
 
-        sesion.setCuposDisponibles(sesion.getCuposDisponibles() - 1);
-        sesionRepository.save(sesion);
+        asistenciaRepository.save(asistencia);
+    }
+
+    public List<Asistencia> listarTodas() {
+        return asistenciaRepository.findAll();
     }
 }

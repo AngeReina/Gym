@@ -17,7 +17,7 @@ public class Factura {
     @Column(name = "total_factura")
     private Double totalFactura;
     @Enumerated(EnumType.STRING)
-    private EstadoFactura estado = EstadoFactura.PENDIENTE; // Valor por defecto
+    private EstadoFactura estado = EstadoFactura.PENDIENTE;
 
     @ManyToOne
     @JoinColumn(name = "id_suscripcion")

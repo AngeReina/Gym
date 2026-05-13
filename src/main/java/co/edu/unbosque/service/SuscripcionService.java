@@ -8,8 +8,8 @@ import co.edu.unbosque.repository.ClienteRepository;
 import co.edu.unbosque.repository.PlanRepository;
 import co.edu.unbosque.repository.SuscripcionRepository;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class SuscripcionService {
@@ -28,19 +28,29 @@ public class SuscripcionService {
 
     public void crearSuscripcion(SuscripcionDTO dto) {
         Cliente cliente = clienteRepository.findById(dto.idCliente())
-                .orElseThrow(() -> new RuntimeException("Cliente no existe"));
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+
         Plan plan = planRepository.findById(dto.idPlan())
-                .orElseThrow(() -> new RuntimeException("Plan no existe"));
+                .orElseThrow(() -> new RuntimeException("Plan no encontrado"));
 
         Suscripcion s = new Suscripcion();
         s.setCliente(cliente);
         s.setPlan(plan);
-        s.setFechaInicio(dto.fechaInicio() != null ? dto.fechaInicio() : LocalDate.now());
-        s.setFechaFin(s.getFechaInicio().plusMonths(1));
-        s.setCosto(plan.getCosto());
-        s.setEstado("ACTIVA");
-        s.setBeneficios(dto.beneficios());
+        s.setFechaInicio(dto.fechaInicio());
+        try {
+            long dias = Long.parseLong(plan.getDuracion());
+            s.setFechaFin(dto.fechaInicio().plusDays(dias));
+        } catch (NumberFormatException e) {
+            // Valor por defecto si la conversión falla (ej. 30 días)
+            s.setFechaFin(dto.fechaInicio().plusDays(30));
+        }
+
+        s.setEstado("ACTIVO");
 
         suscripcionRepository.save(s);
+    }
+
+    public List<Suscripcion> listarSuscripciones() {
+        return suscripcionRepository.findAll();
     }
 }

@@ -24,6 +24,7 @@ public class ClienteService {
         c.setTipoDocumento(dto.tipoDocumento());
         c.setTelefono(dto.telefono());
         c.setEmail(dto.email());
+
         clienteRepository.save(c);
     }
 

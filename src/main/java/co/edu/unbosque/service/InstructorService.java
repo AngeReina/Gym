@@ -4,6 +4,7 @@ import co.edu.unbosque.entity.Instructor;
 import co.edu.unbosque.model.request.InstructorDTO;
 import co.edu.unbosque.repository.InstructorRepository;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class InstructorService {
@@ -16,11 +17,16 @@ public class InstructorService {
     public void registrar(InstructorDTO dto) {
         Instructor i = new Instructor();
         i.setPrimerNombre(dto.primerNombre());
+        i.setSegundoNombre(dto.segundoNombre());
         i.setPrimerApellido(dto.primerApellido());
-        i.setNumeroDocumento(dto.numeroDocumento());
+        i.setSegundoApellido(dto.segundoApellido());
         i.setEspecialidad(dto.especialidad());
         i.setTelefono(dto.telefono());
-        i.setEmail(dto.email());
+
         instructorRepository.save(i);
+    }
+
+    public List<Instructor> listarTodos() {
+        return instructorRepository.findAll();
     }
 }
