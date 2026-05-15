@@ -47,6 +47,13 @@ public class PagoService {
                     Tarjeta t = new Tarjeta();
                     t.setMonto(detalle.monto());
 
+                    try {
+                        t.setFranquicia(FranquiciaTarjeta.valueOf(detalle.franquicia().trim().toUpperCase()));
+                        t.setTipo(TipoTarjeta.valueOf(detalle.tipoTarjeta().trim().toUpperCase()));
+                    } catch (Exception e) {
+                        throw new RuntimeException("Tipo de tarjeta inválido");
+                    }
+
                     if (detalle.franquicia() != null) {
                         t.setFranquicia(FranquiciaTarjeta.valueOf(detalle.franquicia().toUpperCase()));
                     }
@@ -69,6 +76,14 @@ public class PagoService {
         }
 
         factura.setEstado(EstadoFactura.PAGADA);
-        facturaRepository.save(factura);
+        nuevoPago.setFactura(factura);
+
+        double suma = pagoDTO.metodos().stream()
+                .mapToDouble(DetalleMetodoDTO::monto)
+                .sum();
+
+        if (Math.abs(suma - pagoDTO.totalRecibo()) > 0.01) {
+            throw new RuntimeException("El total no coincide con los métodos de pago");
+        }
     }
 }

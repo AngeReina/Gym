@@ -18,13 +18,13 @@ public class PlanService {
     public void crearPlan(PlanDTO dto) {
         Plan plan = new Plan();
         plan.setNombrePlan(dto.nombrePlan());
-        plan.setCosto(dto.precio().doubleValue());
-        plan.setDuracion(dto.duracionDias().toString());
+        plan.setCosto(dto.precio());
+        plan.setDuracionDias(dto.duracionDias());
 
         planRepository.save(plan);
     }
 
     public List<Plan> listarPlanes() {
-        return planRepository.findAll();
+        return planRepository.listarTodos();
     }
 }

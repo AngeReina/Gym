@@ -27,7 +27,7 @@ public class Instructor {
     private String email;
     private String especialidad;
 
-    @OneToMany(mappedBy = "instructor")
+    @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY)
     private List<Sesion> sesiones;
 
     public Instructor() {}

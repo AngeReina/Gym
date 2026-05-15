@@ -27,5 +27,6 @@ public record SesionDTO(
         @Min(1)
         Integer cupoMax,
 
+        @Min(0)
         Integer cuposDisponibles
 ) {}

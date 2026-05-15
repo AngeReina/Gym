@@ -16,7 +16,9 @@ public class Efectivo {
 
     public Efectivo(){}
 
-    public Efectivo(Double monto, Pago nuevoPago) {
+    public Efectivo(Double monto, Pago pago) {
+        this.monto = monto;
+        this.pago = pago;
     }
 
     public Long getIdEfectivo() {return idEfectivo;}

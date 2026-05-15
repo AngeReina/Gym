@@ -1,6 +1,8 @@
 package co.edu.unbosque.entity;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -13,8 +15,8 @@ public class Plan {
 
     @Column(name = "nombre_plan")
     private String nombrePlan;
-    private Double costo;
-    private String duracion;
+    private BigDecimal costo;
+    private Integer duracionDias;
 
     @OneToMany(mappedBy = "plan")
     private List<Suscripcion> suscripciones;
@@ -25,10 +27,10 @@ public class Plan {
     public void setIdPlan(Long idPlan) {this.idPlan = idPlan;}
     public String getNombrePlan() {return nombrePlan;}
     public void setNombrePlan(String nombrePlan) {this.nombrePlan = nombrePlan;}
-    public Double getCosto() {return costo;}
-    public void setCosto(Double costo) {this.costo = costo;}
-    public String getDuracion() {return duracion;}
-    public void setDuracion(String duracion) {this.duracion = duracion;}
+    public BigDecimal getCosto() {return costo;}
+    public void setCosto(BigDecimal costo) {this.costo = costo;}
+    public Integer getDuracionDias() {return duracionDias;}
+    public void setDuracionDias(Integer duracionDias) {this.duracionDias = duracionDias;}
     public List<Suscripcion> getSuscripciones() {return suscripciones;}
     public void setSuscripciones(List<Suscripcion> suscripciones) {this.suscripciones = suscripciones;}
 }

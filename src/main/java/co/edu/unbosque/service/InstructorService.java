@@ -16,6 +16,7 @@ public class InstructorService {
 
     public void registrar(InstructorDTO dto) {
         Instructor i = new Instructor();
+
         i.setPrimerNombre(dto.primerNombre());
         i.setSegundoNombre(dto.segundoNombre());
         i.setPrimerApellido(dto.primerApellido());
@@ -23,10 +24,17 @@ public class InstructorService {
         i.setEspecialidad(dto.especialidad());
         i.setTelefono(dto.telefono());
 
+        i.setNumeroDocumento(dto.numeroDocumento());
+        i.setTipoDocumento(dto.tipoDocumento());
+        i.setEmail(dto.email());
+
         instructorRepository.save(i);
     }
 
     public List<Instructor> listarTodos() {
         return instructorRepository.findAll();
     }
-}
+
+    public List<Instructor> buscarPorEspecialidad(String especialidad) {
+        return instructorRepository.porEspecialidad(especialidad);
+    }}

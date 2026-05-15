@@ -17,7 +17,7 @@ public class PagoController {
         this.pagoService = pagoService;
     }
 
-    @PostMapping("/registrar")
+    @PostMapping
     public ResponseEntity<?> registrarPago(@RequestBody @Valid PagoDTO pagoDTO) {
         pagoService.registrarPagoMixto(pagoDTO);
         return ResponseEntity.ok("Pago registrado y factura actualizada con éxito");

@@ -16,5 +16,13 @@ public record InstructorDTO(
         @NotBlank
         String especialidad,
 
-        String telefono
+        String telefono,
+
+        @NotBlank
+        String numeroDocumento,
+
+        @NotBlank
+        String tipoDocumento,
+
+        String email
 ) {}

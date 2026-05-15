@@ -3,6 +3,7 @@ package co.edu.unbosque.service;
 import co.edu.unbosque.entity.Factura;
 import co.edu.unbosque.entity.Suscripcion;
 import co.edu.unbosque.model.request.FacturaDTO;
+import co.edu.unbosque.model.request.FacturaDTOResponse;
 import co.edu.unbosque.repository.FacturaRepository;
 import co.edu.unbosque.repository.SuscripcionRepository;
 import co.edu.unbosque.entity.enums.EstadoFactura;
@@ -21,13 +22,15 @@ public class FacturaService {
     }
 
     public void emitirFactura(FacturaDTO dto) {
-        Suscripcion suscripcion = suscripcionRepository.findById(dto.idPago())
-                .orElseThrow(() -> new RuntimeException("Suscripción no encontrada para generar factura"));
+
+        Suscripcion suscripcion = suscripcionRepository.findById(dto.idSuscripcion())
+                .orElseThrow(() -> new RuntimeException("Suscripción no encontrada"));
 
         Factura factura = new Factura();
         factura.setSuscripcion(suscripcion);
         factura.setTotalFactura(dto.total());
         factura.setEstado(EstadoFactura.PAGADA);
+
         if (dto.fechaEmision() != null) {
             factura.setFechaEmision(dto.fechaEmision());
         }
@@ -35,7 +38,16 @@ public class FacturaService {
         facturaRepository.save(factura);
     }
 
-    public List<Factura> obtenerHistorial() {
-        return facturaRepository.findAll();
+    public List<FacturaDTOResponse> obtenerHistorial() {
+
+        return facturaRepository.listarConSuscripcion()
+                .stream()
+                .map(f -> new FacturaDTOResponse(
+                        f.getIdFactura(),
+                        f.getTotalFactura(),
+                        f.getEstado().name(),
+                        f.getSuscripcion().getIdSuscripcion()
+                ))
+                .toList();
     }
 }

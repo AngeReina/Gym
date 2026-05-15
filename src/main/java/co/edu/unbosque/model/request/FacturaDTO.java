@@ -5,12 +5,10 @@ import java.time.LocalDateTime;
 
 public record FacturaDTO(
         @NotNull
-        Long idPago,
+        Long idSuscripcion,
 
         LocalDateTime fechaEmision,
 
         @NotNull
-        Double total,
-
-        String detallesAdicionales
+        Double total
 ) {}
