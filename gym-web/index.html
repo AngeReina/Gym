@@ -1,0 +1,711 @@
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Gym — Panel de Gestion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css"/>
+  </head>
+  <body>
+
+  <div id="app">
+
+    <!-- ══ SIDEBAR ══════════════════════════════════════════════════════ -->
+    <nav id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-word">Gym</div>
+        <div class="logo-sub">Panel de Gestion</div>
+      </div>
+
+      <div class="nav-group-label">Principal</div>
+      <div class="nav-item active" data-view="dashboard">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        Dashboard
+      </div>
+
+      <div class="nav-group-label">Personas</div>
+      <div class="nav-item" data-view="clientes">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        Clientes
+      </div>
+      <div class="nav-item" data-view="instructores">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4"/><path d="M16 19l2 2 4-4"/></svg>
+        </div>
+        Instructores
+      </div>
+
+      <div class="nav-group-label">Clases</div>
+      <div class="nav-item" data-view="clases">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 3h20v14H2z"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        Clases
+      </div>
+      <div class="nav-item" data-view="sesiones">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        Sesiones
+      </div>
+      <div class="nav-item" data-view="asistencias">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        Asistencias
+      </div>
+
+      <div class="nav-group-label">Facturacion</div>
+      <div class="nav-item" data-view="planes">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        Planes
+      </div>
+      <div class="nav-item" data-view="suscripciones">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        Suscripciones
+      </div>
+      <div class="nav-item" data-view="facturas">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        Facturas
+      </div>
+      <div class="nav-item" data-view="pagos">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        Pagos
+      </div>
+      <div class="nav-item" data-view="reportes">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        Reportes
+      </div>
+    </nav>
+
+    <!-- ══ MAIN ═════════════════════════════════════════════════════════ -->
+    <div id="main">
+
+      <div id="topbar">
+        <div id="page-title">Dashboard</div>
+        <div class="status-dot">
+          <div class="dot"></div>
+          API: <span id="api-url-label">localhost:8080</span>
+        </div>
+      </div>
+
+      <!-- ── CONTENT (todas las vistas van aquí dentro) ─────────────── -->
+      <div id="content">
+
+        <!-- DASHBOARD ──────────────────────────────────────────────── -->
+        <div id="view-dashboard" class="view active">
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-label">Clientes</div>
+              <div class="stat-value" id="stat-clientes">-</div>
+              <div class="stat-desc">Registrados</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Instructores</div>
+              <div class="stat-value" id="stat-instructores">-</div>
+              <div class="stat-desc">Activos</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Sesiones</div>
+              <div class="stat-value" id="stat-sesiones">-</div>
+              <div class="stat-desc">Programadas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Facturas</div>
+              <div class="stat-value" id="stat-facturas">-</div>
+              <div class="stat-desc">Emitidas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Planes</div>
+              <div class="stat-value" id="stat-planes">-</div>
+              <div class="stat-desc">Disponibles</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Suscripciones</div>
+              <div class="stat-value" id="stat-suscrip">-</div>
+              <div class="stat-desc">Activas</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Acceso Rapido</div>
+            <div style="display:flex; flex-wrap:wrap; gap:10px;">
+              <button class="btn btn-secondary" data-navigate="clientes">Nuevo Cliente</button>
+              <button class="btn btn-secondary" data-navigate="instructores">Nuevo Instructor</button>
+              <button class="btn btn-secondary" data-navigate="sesiones">Nueva Sesion</button>
+              <button class="btn btn-secondary" data-navigate="suscripciones">Nueva Suscripcion</button>
+              <button class="btn btn-secondary" data-navigate="facturas">Emitir Factura</button>
+              <button class="btn btn-primary"   data-navigate="pagos">Registrar Pago</button>
+            </div>
+          </div>
+        </div>
+        <!-- /DASHBOARD -->
+
+        <!-- CLIENTES ───────────────────────────────────────────────── -->
+        <div id="view-clientes" class="view">
+          <div class="two-col">
+
+            <!-- Formulario -->
+            <div class="card">
+              <div class="card-title">Registrar Cliente <span class="pill">POST</span></div>
+              <form id="form-cliente">
+                <div class="form-row">
+                  <div class="form-group"><label>Primer Nombre</label><input name="primerNombre" required placeholder="Juan"/></div>
+                  <div class="form-group"><label>Segundo Nombre</label><input name="segundoNombre" placeholder="Carlos"/></div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group"><label>Primer Apellido</label><input name="primerApellido" required placeholder="Perez"/></div>
+                  <div class="form-group"><label>Segundo Apellido</label><input name="segundoApellido" placeholder="Lopez"/></div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Tipo Documento</label>
+                    <select name="tipoDocumento" required>
+                      <option value="">Seleccionar...</option>
+                      <option value="CC">CC - Cedula</option>
+                      <option value="TI">TI - Tarjeta Identidad</option>
+                      <option value="CE">CE - Cedula Extranjeria</option>
+                      <option value="PA">PA - Pasaporte</option>
+                    </select>
+                  </div>
+                  <div class="form-group"><label>Numero Documento</label><input name="numeroDocumento" required placeholder="1234567890"/></div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group"><label>Telefono</label><input name="telefono" placeholder="3001234567"/></div>
+                  <div class="form-group"><label>Email</label><input name="email" type="email" placeholder="juan@email.com"/></div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Registrar Cliente</button>
+              </form>
+            </div>
+
+            <!-- Tabla -->
+            <div class="card">
+              <div class="card-title">Lista de Clientes <span class="pill" id="cnt-clientes">0</span></div>
+              <div class="table-wrap">
+                <div class="filter-bar">
+                  <div class="search-wrapper">
+                    <input id="input-search-cliente" type="text" placeholder="Buscar cliente..."/>
+                  </div>
+                  <div class="custom-select" id="cs-filter-cliente">
+                    <button type="button" class="custom-select-btn" id="cs-filter-cliente-btn">Todos</button>
+                    <div class="custom-select-menu" id="cs-filter-cliente-menu">
+                      <div class="custom-select-option selected" data-value="todos">Todos</div>
+                      <div class="custom-select-option" data-value="ranking">Ranking</div>
+                    </div>
+                  </div>
+                </div>
+                <table>
+                  <thead><tr><th>ID</th><th>Nombre Completo</th><th>Documento</th><th>Telefono</th><th>Email</th></tr></thead>
+                  <tbody id="tbody-clientes"><tr><td colspan="5" class="empty-state">Cargando...</td></tr></tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /CLIENTES -->
+
+        <!-- INSTRUCTORES ────────────────────────────────────────────── -->
+        <div id="view-instructores" class="view">
+          <div class="two-col">
+
+            <!-- Formulario -->
+            <div class="card">
+              <div class="card-title">Registrar Instructor <span class="pill">POST</span></div>
+              <form id="form-instructor">
+                <div class="form-group">
+                  <label>Tipo Documento</label>
+                  <select name="tipoDocumento" required>
+                    <option value="">Seleccionar...</option>
+                    <option value="CC">CC</option>
+                    <option value="TI">TI</option>
+                    <option value="CE">CE</option>
+                    <option value="PA">PA</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Numero Documento</label>
+                  <input name="numeroDocumento" required placeholder="123456789"/>
+                </div>
+                <div class="form-row">
+                  <div class="form-group"><label>Primer Nombre</label><input name="primerNombre" required placeholder="Maria"/></div>
+                  <div class="form-group"><label>Segundo Nombre</label><input name="segundoNombre" placeholder="Jose"/></div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group"><label>Primer Apellido</label><input name="primerApellido" required placeholder="Garcia"/></div>
+                  <div class="form-group"><label>Segundo Apellido</label><input name="segundoApellido" placeholder="Torres"/></div>
+                </div>
+                <div class="form-group"><label>Especialidad</label><input name="especialidad" required placeholder="Yoga, Crossfit, Spinning..."/></div>
+                <div class="form-group"><label>Telefono</label><input name="telefono" placeholder="3009876543"/></div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input name="email" type="email" placeholder="correo@email.com"/>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Registrar Instructor</button>
+              </form>
+            </div>
+
+            <!-- Tabla -->
+            <div class="card">
+              <div class="card-title">Lista de Instructores <span class="pill" id="cnt-instructores">0</span></div>
+              <div class="table-wrap">
+                <div class="filter-bar">
+                  <div class="search-wrapper">
+                    <input id="input-search-instructor" type="text" placeholder="Buscar por nombre..."/>
+                  </div>
+                  <input id="input-especialidad-instructor" type="text" 
+                      placeholder="Especialidad..." class="filter-input"/>
+                  <button id="btn-filter-especialidad" class="btn-ghost-sm">Filtrar</button>
+                  <div class="custom-select" id="cs-filter-instructor">
+                    <button type="button" class="custom-select-btn">Todos</button>
+                    <div class="custom-select-menu" id="cs-filter-instructor-menu">
+                      <div class="custom-select-option selected" data-value="todos">Todos</div>
+                      <div class="custom-select-option" data-value="con-clases">Con Clases</div>
+                      <div class="custom-select-option" data-value="ranking">Ranking Sesiones</div>
+                    </div>
+                  </div>
+                </div>
+                <table>
+                  <thead><tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Especialidad</th><th>Telefono</th></tr></thead>
+                  <tbody id="tbody-instructores"><tr><td colspan="5" class="empty-state">Cargando...</td></tr></tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /INSTRUCTORES -->
+
+        <!-- CLASES ─────────────────────────────────────────────────── -->
+        <div id="view-clases" class="view">
+          <div class="two-col">
+
+            <!-- Formulario -->
+            <div class="card">
+              <div class="card-title">Registrar Clase <span class="pill">POST</span></div>
+              <form id="form-clase">
+                <div class="form-group"><label>Nombre de la Clase</label><input name="nombreClase" required placeholder="Zumba Avanzado"/></div>
+                <div class="form-group"><label>Descripcion</label><textarea name="descripcion" placeholder="Descripcion de la clase..."></textarea></div>
+                <button type="submit" class="btn btn-primary btn-block">Registrar Clase</button>
+              </form>
+            </div>
+
+            <!-- Tabla -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title" style="margin-bottom:0;">
+                  Clases Disponibles <span class="pill" id="cnt-clases">0</span>
+                </div>
+                <button type="button" id="btn-refresh-clases" class="btn-ghost-sm">
+                  Actualizar
+                </button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>ID</th><th>Nombre</th><th>Descripción</th></tr></thead>
+                  <tbody id="tbody-clases"><tr><td colspan="3" class="empty-state">Cargando...</td></tr></tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /CLASES -->
+
+        <!-- SESIONES ───────────────────────────────────────────────── -->
+        <div id="view-sesiones" class="view">
+          <div class="two-col">
+
+            <!-- Formulario -->
+            <div class="card">
+              <div class="card-title">Crear Sesion <span class="pill">POST</span></div>
+              <form id="form-sesion">
+                <div class="form-row">
+                  <div class="form-group"><label>Clase</label><select name="idClase" id="sel-clase-sesion" required><option value="">Seleccionar...</option></select></div>
+                  <div class="form-group"><label>Instructor</label><select name="idInstructor" id="sel-instructor-sesion" required><option value="">Seleccionar...</option></select></div>
+                </div>
+                <div class="form-group"><label>Fecha</label><input name="fecha" type="date" required/></div>
+                <div class="form-row">
+                  <div class="form-group"><label>Hora Inicio</label><input name="horaInicio" type="time" required/></div>
+                  <div class="form-group"><label>Hora Fin</label><input name="horaFin" type="time" required/></div>
+                </div>
+                <div class="form-group"><label>Cupo Maximo</label><input name="cupoMax" type="number" min="1" required placeholder="20"/></div>
+                <button type="submit" class="btn btn-primary btn-block">Crear Sesion</button>
+              </form>
+            </div>
+
+            <!-- Tabla -->
+            <div class="card">
+              <div class="card-title">Sesiones Programadas <span class="pill" id="cnt-sesiones">0</span></div>
+              <div class="table-wrap">
+                <div class="filter-bar">
+                  <div class="custom-select" id="cs-filter-sesion">
+                    <button type="button" class="custom-select-btn">Todas</button>
+                    <div class="custom-select-menu" id="cs-filter-sesion-menu">
+                      <div class="custom-select-option selected" data-value="todos">Todas</div>
+                      <div class="custom-select-option" data-value="con-cupos">Con Cupos</div>
+                      <div class="custom-select-option" data-value="por-fecha">Por Fecha</div>
+                      <div class="custom-select-option" data-value="por-instructor">Por Instructor</div>
+                      <div class="custom-select-option" data-value="mas-asistidas">Más Asistidas</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Panel: filtro por fecha -->
+                <div id="sesion-filter-fecha" class="filter-panel">
+                  <input id="input-fecha-sesion" type="date" class="filter-input"/>
+                  <button id="btn-filter-fecha-sesion" class="btn-ghost-sm">Buscar</button>
+                </div>
+
+                <!-- Panel: filtro por instructor -->
+                <div id="sesion-filter-instructor" class="filter-panel">
+                  <select id="sel-filter-instructor-sesion" class="filter-input"></select>
+                  <button id="btn-filter-instructor-sesion" class="btn-ghost-sm">Buscar</button>
+                </div>
+
+                <table>
+                  <thead><tr><th>ID</th><th>Clase</th><th>Instructor</th><th>Fecha</th><th>Hora</th><th>Cupos</th></tr></thead>
+                  <tbody id="tbody-sesiones"><tr><td colspan="6" class="empty-state">Cargando...</td></tr></tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /SESIONES -->
+
+        <!-- ASISTENCIAS ─────────────────────────────────────────────── -->
+        <div id="view-asistencias" class="view">
+          <div class="two-col">
+
+            <!-- Formulario -->
+            <div class="card">
+              <div class="card-title">Registrar Asistencia <span class="pill">POST</span></div>
+              <form id="form-asistencia">
+                <div class="form-group"><label>Cliente</label><select name="idCliente" id="sel-cliente-asist" required><option value="">Seleccionar...</option></select></div>
+                <div class="form-group"><label>Sesion</label><select name="idSesion" id="sel-sesion-asist" required><option value="">Seleccionar...</option></select></div>
+                <button type="submit" class="btn btn-primary btn-block">Registrar Asistencia</button>
+              </form>
+            </div>
+
+            <!-- Tabla -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Historial de Asistencias <span class="pill" id="cnt-asistencias">0</span></div>
+                <button type="button" id="btn-reset-asistencias" class="btn-ghost-sm">
+                  Ver Todas
+                </button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr><th>ID</th><th>Cliente</th><th>Sesion ID</th><th>Fecha</th><th>Estado</th></tr>
+                  </thead>
+                  <tbody id="tbody-asistencias"></tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /ASISTENCIAS -->
+
+        <!-- PLANES ─────────────────────────────────────────────────── -->
+        <div id="view-planes" class="view">
+          <div class="two-col">
+
+            <!-- Formulario -->
+            <div class="card">
+              <div class="card-title">Crear Plan <span class="pill">POST</span></div>
+              <form id="form-plan">
+                <div class="form-group"><label>Nombre del Plan</label><input name="nombrePlan" required placeholder="Plan Premium"/></div>
+                <div class="form-row">
+                  <div class="form-group"><label>Precio ($)</label><input name="precio" type="number" step="0.01" min="0" required placeholder="89000"/></div>
+                  <div class="form-group"><label>Duracion (dias)</label><input name="duracionDias" type="number" min="1" required placeholder="30"/></div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Crear Plan</button>
+              </form>
+            </div>
+
+            <!-- Tabla -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title" style="margin-bottom:0;">
+                  Planes Activos <span class="pill" id="cnt-planes">0</span>
+                </div>
+                <div class="custom-select" id="cs-filter-plan">
+                  <button type="button" class="custom-select-btn" id="cs-filter-plan-btn">Todos</button>
+                  <div class="custom-select-menu" id="cs-filter-plan-menu">
+                    <div class="custom-select-option selected" data-value="todos">Todos</div>
+                    <div class="custom-select-option" data-value="precio">Por Precio</div>
+                    <div class="custom-select-option" data-value="comprados">Más Comprados</div>
+                    <div class="custom-select-option" data-value="ingresos">Ingresos</div>
+                    <div class="custom-select-option" data-value="activos">Activos</div>
+                  </div>
+                </div>
+              </div>
+              <div id="plan-filter-dias" class="filter-panel" style="margin-bottom:12px;">
+                <input id="input-dias-plan" type="number" placeholder="Días" class="filter-input"/>
+                <button id="btn-filter-dias-plan" class="btn-ghost-sm">Filtrar</button>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>ID</th><th>Nombre</th><th>Costo</th><th>Duracion</th></tr></thead>
+                  <tbody id="tbody-planes"><tr><td colspan="4" class="empty-state">Cargando...</td></tr></tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /PLANES -->
+
+        <!-- SUSCRIPCIONES ───────────────────────────────────────────── -->
+        <div id="view-suscripciones" class="view">
+          <div class="two-col">
+
+            <!-- Formulario -->
+            <div class="card">
+              <div class="card-title">Nueva Suscripcion <span class="pill">POST</span></div>
+              <form id="form-suscripcion">
+                <div class="form-group">
+                  <label>Cliente</label>
+                  <select name="idCliente" id="sel-cliente-suscr" required><option value="">Seleccionar...</option></select>
+                </div>
+                <div class="form-group">
+                  <label>Plan</label>
+                  <select name="idPlan" id="sel-plan-suscr" required><option value="">Seleccionar...</option></select>
+                </div>
+                <div class="form-group">
+                  <label>Fecha Inicio</label>
+                  <input name="fechaInicio" type="date" required/>
+                </div>
+                <div class="form-group">
+                  <label>Beneficios</label>
+                  <input name="beneficios" placeholder="Acceso VIP, piscina, etc"/>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Crear Suscripcion</button>
+              </form>
+            </div>
+
+            <!-- Tabla -->
+            <div class="card">
+              <div class="card-title">Suscripciones <span class="pill" id="cnt-suscrip">0</span></div>
+              <div class="filter-bar">
+                <div class="custom-select" id="cs-suscrip-estado">
+                  <button type="button" class="custom-select-btn" id="cs-suscrip-estado-btn">Todos los estados</button>
+                  <div class="custom-select-menu" id="cs-suscrip-estado-menu">
+                    <div class="custom-select-option selected" data-value="">Todos los estados</div>
+                    <div class="custom-select-option" data-value="ACTIVO">Activo</div>
+                    <div class="custom-select-option" data-value="VENCIDO">Vencido</div>
+                    <div class="custom-select-option" data-value="CANCELADO">Cancelado</div>
+                  </div>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr><th>ID</th><th>Cliente</th><th>Plan</th><th>Inicio</th><th>Fin</th><th>Estado</th></tr>
+                  </thead>
+                  <tbody id="tbody-suscripciones">
+                    <tr><td colspan="6" class="empty-state">Cargando...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /SUSCRIPCIONES -->
+
+        <!-- FACTURAS ───────────────────────────────────────────────── -->
+        <div id="view-facturas" class="view">
+          <div class="two-col">
+
+            <!-- Formulario -->
+            <div class="card">
+              <div class="card-title">Emitir Factura <span class="pill">POST</span></div>
+              <form id="form-factura">
+                <div class="form-group">
+                  <label>Suscripcion</label>
+                  <select name="idSuscripcion" id="sel-suscr-factura" required><option value="">Seleccionar...</option></select>
+                </div>
+                <div class="form-group"><label>Total ($)</label><input name="total" type="number" step="0.01" min="0" required placeholder="89000"/></div>
+                <div class="form-group"><label>Fecha Emision</label><input name="fechaEmision" type="date"/></div>
+                <button type="submit" class="btn btn-primary btn-block">Emitir Factura</button>
+              </form>
+            </div>
+
+            <!-- Tabla -->
+            <div class="card">
+              <div class="card-title">Historial de Facturas <span class="pill" id="cnt-facturas">0</span></div>
+              <div class="filter-bar">
+                <div class="search-wrapper">
+                  <input id="input-search-factura" type="text" placeholder="Buscar factura, ID, fecha..."/>
+                </div>
+                <div class="custom-select" id="cs-filter-factura">
+                  <button type="button" class="custom-select-btn" id="cs-filter-factura-btn">Todos</button>
+                  <div class="custom-select-menu" id="cs-filter-factura-menu">
+                    <div class="custom-select-option selected" data-value="todos">Todos</div>
+                    <div class="custom-select-option" data-value="PENDIENTE">Pendiente</div>
+                    <div class="custom-select-option" data-value="PAGADA">Pagada</div>
+                    <div class="custom-select-option" data-value="VENCIDA">Vencida</div>
+                  </div>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr><th>ID</th><th>Suscripcion</th><th>Total</th><th>Fecha</th><th>Estado</th></tr>
+                  </thead>
+                  <tbody id="tbody-facturas">
+                    <tr><td colspan="5" class="empty-state">Cargando...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /FACTURAS -->
+
+        <!-- PAGOS ──────────────────────────────────────────────────── -->
+        <div id="view-pagos" class="view">
+          <div class="two-col">
+
+            <!-- Formulario -->
+            <div class="card">
+              <div class="card-title">Registrar Pago Mixto <span class="pill">POST</span></div>
+              <form id="form-pago">
+                <div class="form-group">
+                  <label>Factura</label>
+                  <select name="idFactura" id="sel-factura-pago" required><option value="">Seleccionar...</option></select>
+                </div>
+                <div class="form-group">
+                  <label>Total Recibo ($)</label>
+                  <input name="totalRecibo" type="number" step="0.01" min="0" required placeholder="89000"/>
+                </div>
+                <div style="margin-bottom:12px; display:flex; align-items:center; justify-content:space-between;">
+                  <span style="font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--muted);">Metodos de Pago</span>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-add-metodo">+ Agregar</button>
+                </div>
+                <div class="metodos-container" id="metodos-container"></div>
+                <button type="submit" class="btn btn-primary btn-block">Registrar Pago</button>
+              </form>
+            </div>
+
+            <!-- Info -->
+            <div class="card">
+              <div class="card-title">Info del Sistema</div>
+              <p style="font-size:13px; color:var(--muted); line-height:1.7;">
+                El sistema soporta <strong style="color:var(--text)">pagos mixtos</strong>: una sola transaccion puede incluir multiples metodos
+                (Efectivo, Tarjeta y Transferencia simultaneamente).<br/><br/>
+                Al completar el pago, la factura asociada cambia automaticamente a estado
+                <span class="badge badge-green">PAGADA</span>.<br/><br/>
+                Campos por metodo:<br/>
+                - <strong style="color:var(--text)">Efectivo</strong>: monto<br/>
+                - <strong style="color:var(--text)">Tarjeta</strong>: monto, franquicia, tipo<br/>
+                - <strong style="color:var(--text)">Transferencia</strong>: monto, banco origen, num. transaccion
+              </p>
+            </div>
+
+          </div>
+        </div>
+        <!-- /PAGOS -->
+
+        <!-- REPORTES ────────────────────────────────────────────────── -->
+        <div id="view-reportes" class="view">
+
+          <div class="rep-top-row">
+            <div class="card rep-card">
+              <div class="card-title">Totales por Método</div>
+              <div id="rep-totales-metodos"><p class="rep-empty">Cargando...</p></div>
+            </div>
+            <div class="card rep-card">
+              <div class="card-title">Facturas Pagadas</div>
+              <div id="rep-resumen-facturas"><p class="rep-empty">Cargando...</p></div>
+            </div>
+          </div>
+
+          <div class="rep-mid-row">
+            <div class="card rep-card">
+              <div class="card-title">Distribución de Métodos de Pago</div>
+              <div id="rep-distribucion-metodos"><p class="rep-empty">Cargando...</p></div>
+            </div>
+            <div class="card rep-card">
+              <div class="card-title">Ranking Clientes por Pago <span class="pill">TOP</span></div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>#</th><th>Cliente</th><th>Total Pagado</th></tr></thead>
+                  <tbody id="tbody-ranking-clientes">
+                    <tr><td colspan="3" class="empty-state">Cargando...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="rep-bot-row">
+            <div class="card rep-card">
+              <div class="card-title">Ranking Bancos (Transferencias)</div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Banco</th><th>Total Transferido</th></tr></thead>
+                  <tbody id="tbody-ranking-bancos">
+                    <tr><td colspan="2" class="empty-state">Cargando...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card rep-card">
+              <div class="card-title">Franquicias de Tarjeta</div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Franquicia</th><th>Uso</th></tr></thead>
+                  <tbody id="tbody-franquicias">
+                    <tr><td colspan="2" class="empty-state">Cargando...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card rep-card">
+              <div class="card-title">Planes Más Usados</div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Plan</th><th>Suscripciones</th></tr></thead>
+                  <tbody id="tbody-planes-usados">
+                    <tr><td colspan="2" class="empty-state">Cargando...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script type="module" src="App.js"></script>
+
+  </body>
+  </html>
