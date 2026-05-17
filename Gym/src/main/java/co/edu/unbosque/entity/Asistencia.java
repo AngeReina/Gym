@@ -30,7 +30,6 @@ public class Asistencia {
 
     public Asistencia(){}
 
-
     public Long getIdAsistencia() {return idAsistencia;}
     public void setIdAsistencia(Long idAsistencia) {this.idAsistencia = idAsistencia;}
     public LocalDateTime getFechaRegistro() {return fechaRegistro;}

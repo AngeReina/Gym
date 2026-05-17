@@ -92,18 +92,14 @@ export class PlanesView {
   }
 
   _initEvents() {
-    const filterSelect = document.getElementById('select-filter-plan');
-    if (filterSelect) {
-      filterSelect.onchange = async (e) => {
-        const val = e.target.value;
-        document.getElementById('plan-filter-dias').style.display = val === 'largos' ? 'flex' : 'none';
-
+    const csFilter = document.getElementById('cs-filter-instructor');
+    if (csFilter) {
+      csFilter.addEventListener('cs-change', async (e) => {
+        const val = e.detail.value;
         if (val === 'todos')          await this.load();
-        else if (val === 'precio')    await this.loadPorPrecio();
-        else if (val === 'comprados') await this.loadMasComprados();
-        else if (val === 'ingresos')  await this.loadIngresosPorPlan();
-        else if (val === 'activos')   await this.loadPlanesActivos();
-      };
+        else if (val === 'con-clases') await this.loadConClases();
+        else if (val === 'ranking')    await this.loadRankingSesiones();
+      });
     }
 
     const btnDias = document.getElementById('btn-filter-dias-plan');
@@ -164,7 +160,7 @@ export class PlanesView {
     event.preventDefault();
     const data = Utils.getFormData('form-plan');
 
-    data.precio = parseFloat(data.precio);
+    data.precio = parseFloat(data.costo);
     data.duracionDias = parseInt(data.duracionDias);
 
     try {

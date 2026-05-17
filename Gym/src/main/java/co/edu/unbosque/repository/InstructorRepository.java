@@ -22,7 +22,7 @@ public interface InstructorRepository extends JpaRepository<Instructor, Long> {
     List<Instructor> porEspecialidad(@Param("especialidad") String especialidad);
 
     @Query(value = """
-        SELECT COUNT('a')
+        SELECT COUNT('X')
         FROM instructor
     """, nativeQuery = true)
     Long contarInstructores();

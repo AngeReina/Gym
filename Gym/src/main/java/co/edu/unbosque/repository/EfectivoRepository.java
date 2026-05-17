@@ -24,7 +24,7 @@ public interface EfectivoRepository extends JpaRepository<Efectivo, Long> {
     Double totalEfectivo();
 
     @Query(value = """
-        SELECT COUNT('a')
+        SELECT COUNT('X')
         FROM efectivo e
     """, nativeQuery = true)
     Long contarEfectivos();

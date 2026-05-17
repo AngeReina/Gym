@@ -19,9 +19,9 @@ export class AsistenciasView {
 
     tb.innerHTML = data.map(a => `
       <tr>
-        <td><span class="badge badge-yellow">${Utils.or(a.idAsistencia ?? a.id)}</span></td>
-        <td>${a.cliente?.primerNombre ?? ''} ${Utils.or(a.cliente?.primerApellido ?? a.idCliente)}</td>
-        <td>${Utils.or(a.sesion?.idSesion ?? a.idSesion)}</td>
+        <td><span class="badge badge-yellow">${Utils.or(a.idAsistencia)}</span></td>
+        <td>${Utils.or(a.clienteNombre)}</td>
+        <td>${Utils.or(a.idSesion)}</td>
         <td>${Utils.or(a.fechaRegistro)}</td>
         <td><span class="badge badge-green">${Utils.or(a.estadoAsistencia, 'PRESENTE')}</span></td>
       </tr>`).join('');
@@ -38,7 +38,7 @@ export class AsistenciasView {
         c => `${c.primerNombre ?? ''} ${c.primerApellido ?? ''}`);
 
       Utils.populateSelect('sel-sesion-asist', sesiones, s => s.idSesion ?? s.id,
-        s => `Sesión ${s.idSesion ?? s.id} - ${s.clase?.nombreClase ?? ''}`);
+        s => `Sesión ${s.idSesion ?? s.id} - ${s.clase ?? ''}`);
 
         if (!this._sesionListenerAdded) {
         document.getElementById('sel-sesion-asist').addEventListener('change', async (e) => {

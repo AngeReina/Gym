@@ -21,7 +21,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     List<Cliente> listarOrdenados();
 
     @Query(value = """
-        SELECT COUNT('a')
+        SELECT COUNT('X')
         FROM cliente
     """, nativeQuery = true)
     Long contarClientes();
@@ -33,7 +33,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     List<Cliente> listarCompleto();
 
     @Query(value = """
-        SELECT a.id_cliente, COUNT('a')
+        SELECT a.id_cliente, COUNT('X')
         FROM asistencia a
         GROUP BY a.id_cliente
         ORDER BY COUNT('a') DESC

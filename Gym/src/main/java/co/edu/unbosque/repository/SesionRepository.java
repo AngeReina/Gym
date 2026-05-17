@@ -81,13 +81,13 @@ public interface SesionRepository extends JpaRepository<Sesion, Long> {
     List<Object[]> sesionesMasAsistidas();
 
     @Query(value = """
-        SELECT COUNT('a') 
+        SELECT COUNT('X') 
         FROM sesion
     """, nativeQuery = true)
     Long contarSesiones();
 
     @Query(value = """
-        SELECT COUNT('a') 
+        SELECT COUNT('X') 
         FROM sesion 
         WHERE cupos_disponibles > 0
     """, nativeQuery = true)

@@ -9,6 +9,7 @@ import co.edu.unbosque.model.request.AsistenciaDTOResponse;
 import co.edu.unbosque.repository.AsistenciaRepository;
 import co.edu.unbosque.repository.ClienteRepository;
 import co.edu.unbosque.repository.SesionRepository;
+import co.edu.unbosque.repository.SuscripcionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,26 +20,52 @@ public class AsistenciaService {
     private final AsistenciaRepository asistenciaRepository;
     private final ClienteRepository clienteRepository;
     private final SesionRepository sesionRepository;
+    private final SuscripcionRepository suscripcionRepository;
 
     public AsistenciaService(AsistenciaRepository asistenciaRepository,
                              ClienteRepository clienteRepository,
-                             SesionRepository sesionRepository) {
-        this.asistenciaRepository = asistenciaRepository;
-        this.clienteRepository = clienteRepository;
-        this.sesionRepository = sesionRepository;
+                             SesionRepository sesionRepository,
+                             SuscripcionRepository suscripcionRepository) {
+        this.asistenciaRepository    = asistenciaRepository;
+        this.clienteRepository       = clienteRepository;
+        this.sesionRepository        = sesionRepository;
+        this.suscripcionRepository   = suscripcionRepository;
     }
 
     public void registrarAsistencia(AsistenciaDTO dto) {
+
         Cliente cliente = clienteRepository.findById(dto.idCliente())
                 .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+
+        // CORRECCIÓN 2: verificar suscripción activa
+        if (suscripcionRepository.contarActivasPorCliente(dto.idCliente()) == 0) {
+            throw new RuntimeException("El cliente no tiene una suscripción activa");
+        }
 
         Sesion sesion = sesionRepository.findById(dto.idSesion())
                 .orElseThrow(() -> new RuntimeException("Sesión no encontrada"));
 
+        // CORRECCIÓN 3: verificar y descontar cupo
+        if (sesion.getCuposDisponibles() == null || sesion.getCuposDisponibles() <= 0) {
+            throw new RuntimeException("No hay cupos disponibles en esta sesión");
+        }
+
+        sesion.setCuposDisponibles(sesion.getCuposDisponibles() - 1);
+        sesionRepository.save(sesion);
+
+        EstadoAsistencia estado = EstadoAsistencia.PRESENTE;
+        if (dto.estadoAsistencia() != null && !dto.estadoAsistencia().isBlank()) {
+            try {
+                estado = EstadoAsistencia.valueOf(dto.estadoAsistencia().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                throw new RuntimeException("Estado de asistencia inválido: " + dto.estadoAsistencia());
+            }
+        }
+
         Asistencia asistencia = new Asistencia();
         asistencia.setCliente(cliente);
         asistencia.setSesion(sesion);
-        asistencia.setEstadoAsistencia(EstadoAsistencia.PRESENTE);
+        asistencia.setEstadoAsistencia(estado);
 
         asistenciaRepository.save(asistencia);
     }

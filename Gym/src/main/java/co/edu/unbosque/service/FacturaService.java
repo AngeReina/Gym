@@ -29,7 +29,7 @@ public class FacturaService {
         Factura factura = new Factura();
         factura.setSuscripcion(suscripcion);
         factura.setTotalFactura(dto.total());
-        factura.setEstado(EstadoFactura.PAGADA);
+        factura.setEstado(EstadoFactura.PENDIENTE);
 
         if (dto.fechaEmision() != null) {
             factura.setFechaEmision(

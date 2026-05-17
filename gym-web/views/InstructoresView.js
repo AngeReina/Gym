@@ -68,18 +68,14 @@ export class InstructoresView {
   }
 
   _initEvents() {
-    const filterSelect = document.getElementById('select-filter-instructor');
-    if (filterSelect) {
-      filterSelect.onchange = async (e) => {
-        const val = e.target.value;
-        if (val === 'todos') {
-          await this.load();
-        } else if (val === 'con-clases') {
-          await this.loadConClases();
-        } else if (val === 'ranking') {
-          await this.loadRankingSesiones();
-        }
-      };
+    const csFilter = document.getElementById('cs-filter-instructor');
+    if (csFilter) {
+      csFilter.addEventListener('cs-change', async (e) => {
+        const val = e.detail.value;
+        if (val === 'todos')          await this.load();
+        else if (val === 'con-clases') await this.loadConClases();
+        else if (val === 'ranking')    await this.loadRankingSesiones();
+      });
     }
 
     const searchInput = document.getElementById('input-search-instructor');

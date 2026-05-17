@@ -33,7 +33,7 @@ public interface FacturaRepository extends JpaRepository<Factura, Long> {
     List<Factura> porEstado(@Param("estado") String estado);
 
     @Query(value = """
-        SELECT COUNT('a')
+        SELECT COUNT('X')
         FROM factura f
         WHERE f.estado = 'PAGADA'
     """, nativeQuery = true)

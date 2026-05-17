@@ -167,7 +167,6 @@ export class SesionesView {
   async loadPorFecha(fecha) {
     try {
       const data = await this.api.get(`/api/sesiones/por-fecha?fecha=${fecha}`);
-      // porFecha retorna Object[] con [id, fecha, nombre_clase, primer_nombre, primer_apellido]
       const tb = document.getElementById('tbody-sesiones');
       document.getElementById('cnt-sesiones').textContent = data.length;
       document.querySelector('#tbody-sesiones').closest('table').querySelector('thead tr').innerHTML =
@@ -188,7 +187,6 @@ export class SesionesView {
   async loadPorInstructor(idInstructor) {
     try {
       const data = await this.api.get(`/api/sesiones/instructor/${idInstructor}`);
-      // porInstructor retorna [id, fecha, nombre_clase, cupos_disponibles]
       const tb = document.getElementById('tbody-sesiones');
       document.getElementById('cnt-sesiones').textContent = data.length;
       document.querySelector('#tbody-sesiones').closest('table').querySelector('thead tr').innerHTML =
@@ -209,7 +207,6 @@ export class SesionesView {
   async loadConCupos() {
     try {
       const data = await this.api.get('/api/sesiones/con-cupos');
-      // conCuposDisponibles retorna [id, fecha, nombre_clase, cupos_disponibles]
       const tb = document.getElementById('tbody-sesiones');
       document.getElementById('cnt-sesiones').textContent = data.length;
       document.querySelector('#tbody-sesiones').closest('table').querySelector('thead tr').innerHTML =

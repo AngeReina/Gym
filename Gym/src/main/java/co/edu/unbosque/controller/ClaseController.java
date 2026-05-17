@@ -3,6 +3,7 @@ package co.edu.unbosque.controller;
 import co.edu.unbosque.entity.Clase;
 import co.edu.unbosque.model.request.ClaseDTO;
 import co.edu.unbosque.service.ClaseService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,13 +22,18 @@ public class ClaseController {
     }
 
     @PostMapping
-    public ResponseEntity<String> crear(@RequestBody ClaseDTO dto) {
+    public ResponseEntity<String> crear(@RequestBody @Valid ClaseDTO dto) {
         claseService.crearClase(dto);
-        return ResponseEntity.ok("Clase creada exitosamente");
+        return ResponseEntity.ok("Clase creada correctamente");
     }
 
     @GetMapping
     public ResponseEntity<List<Clase>> listar() {
         return ResponseEntity.ok(claseService.listarClases());
+    }
+
+    @GetMapping("/total")
+    public ResponseEntity<Long> total() {
+        return ResponseEntity.ok(claseService.obtenerTotalClases());
     }
 }

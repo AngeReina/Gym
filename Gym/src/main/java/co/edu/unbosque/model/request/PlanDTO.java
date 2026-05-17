@@ -12,7 +12,7 @@ public record PlanDTO(
 
         @NotNull
         @DecimalMin("0.0")
-        BigDecimal precio,
+        BigDecimal costo,
 
         @NotNull
         @Min(1)

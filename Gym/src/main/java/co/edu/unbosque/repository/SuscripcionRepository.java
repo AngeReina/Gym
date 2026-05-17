@@ -14,34 +14,34 @@ public interface SuscripcionRepository extends JpaRepository<Suscripcion, Long> 
 
     @Query(value = """
     SELECT
-        s.id_suscripcion,
-        s.fecha_inicio,
-        s.fecha_fin,
-        s.estado,
-        c.primer_nombre,
-        c.primer_apellido,
-        p.nombre_plan
-    FROM suscripcion s
-    JOIN cliente c ON s.id_cliente = c.id_cliente
-    JOIN plan p ON s.id_plan = p.id_plan
-    ORDER BY s.fecha_inicio DESC
-""", nativeQuery = true)
+            s.id_suscripcion,
+            s.fecha_inicio,
+            s.fecha_fin,
+            s.estado,
+            c.primer_nombre,
+            c.primer_apellido,
+            p.nombre_plan
+        FROM suscripcion s
+        JOIN cliente c ON s.id_cliente = c.id_cliente
+        JOIN plan p ON s.id_plan = p.id_plan
+        ORDER BY s.fecha_inicio DESC
+    """, nativeQuery = true)
     List<Object[]> listarCompleto();
 
     @Query(value = """
     SELECT 
-        s.id_suscripcion,
-        s.fecha_inicio,
-        s.fecha_fin,
-        s.estado,
-        c.primer_nombre,
-        c.primer_apellido,
-        p.nombre_plan
-    FROM suscripcion s
-    JOIN cliente c ON s.id_cliente = c.id_cliente
-    JOIN plan p ON s.id_plan = p.id_plan
-    WHERE s.id_cliente = :idCliente
-""", nativeQuery = true)
+            s.id_suscripcion,
+            s.fecha_inicio,
+            s.fecha_fin,
+            s.estado,
+            c.primer_nombre,
+            c.primer_apellido,
+            p.nombre_plan
+        FROM suscripcion s
+        JOIN cliente c ON s.id_cliente = c.id_cliente
+        JOIN plan p ON s.id_plan = p.id_plan
+        WHERE s.id_cliente = :idCliente
+    """, nativeQuery = true)
     List<Object[]> porCliente(@Param("idCliente") Long idCliente);
 
     @Query(value = """
@@ -58,13 +58,13 @@ public interface SuscripcionRepository extends JpaRepository<Suscripcion, Long> 
     List<Object[]> porEstado(@Param("estado") String estado);
 
     @Query(value = """
-        SELECT COUNT('a') 
+        SELECT COUNT('X') 
         FROM suscripcion
     """, nativeQuery = true)
     Long contarSuscripciones();
 
     @Query(value = """
-        SELECT COUNT('a') 
+        SELECT COUNT('X') 
         FROM suscripcion
         WHERE estado = 'ACTIVO'
     """, nativeQuery = true)
@@ -80,4 +80,10 @@ public interface SuscripcionRepository extends JpaRepository<Suscripcion, Long> 
         ORDER BY total DESC
     """, nativeQuery = true)
     List<Object[]> planesMasUsados();
+    @Query(value = """
+    SELECT COUNT('X')
+    FROM suscripcion
+    WHERE id_cliente = :idCliente AND estado = 'ACTIVO'
+    """, nativeQuery = true)
+    Long contarActivasPorCliente(@Param("idCliente") Long idCliente);
 }

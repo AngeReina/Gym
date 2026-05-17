@@ -28,7 +28,7 @@ public interface PagoRepository extends JpaRepository<Pago, Long> {
     Double totalRecaudado();
 
     @Query(value = """
-        SELECT COUNT('a')
+        SELECT COUNT('X')
         FROM pago p
     """, nativeQuery = true)
     Long contarPagos();
@@ -49,7 +49,7 @@ public interface PagoRepository extends JpaRepository<Pago, Long> {
     List<Object[]> totalPorFactura();
 
     @Query(value = """
-        SELECT p.id_factura, COUNT('a') AS cantidad
+        SELECT p.id_factura, COUNT('X') AS cantidad
         FROM pago p
         GROUP BY p.id_factura
     """, nativeQuery = true)
@@ -67,13 +67,13 @@ public interface PagoRepository extends JpaRepository<Pago, Long> {
     List<Object[]> rankingClientesPagos();
 
     @Query(value = """
-        SELECT 'EFECTIVO' AS metodo, COUNT('a') 
+        SELECT 'EFECTIVO' AS metodo, COUNT('X') 
         FROM efectivo
         UNION ALL
-        SELECT 'TARJETA', COUNT('a') 
+        SELECT 'TARJETA', COUNT('X') 
         FROM tarjeta
         UNION ALL
-        SELECT 'TRANSFERENCIA', COUNT('a') 
+        SELECT 'TRANSFERENCIA', COUNT('X') 
         FROM transferencia
     """, nativeQuery = true)
     List<Object[]> distribucionMetodosPago();

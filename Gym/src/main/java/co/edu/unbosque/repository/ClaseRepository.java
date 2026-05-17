@@ -21,7 +21,7 @@ public interface ClaseRepository extends JpaRepository<Clase, Long> {
     List<Clase> listarOrdenadas();
 
     @Query(value = """
-        SELECT COUNT('a')
+        SELECT COUNT('X')
         FROM clase
     """, nativeQuery = true)
     Long contarClases();

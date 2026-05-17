@@ -17,27 +17,19 @@ export class FacturasView {
     }
 
     tb.innerHTML = data.map(f => {
-        const est = f.estado ?? 'PENDIENTE';
-
-        const cls =
-        est === 'PAGADA'
-            ? 'badge-green'
-            : est === 'PENDIENTE'
-            ? 'badge-yellow'
-            : 'badge-red';
-
-        return `
+      const est = f.estado ?? 'PENDIENTE';
+      const cls = est === 'PAGADA'   ? 'badge-green'
+                : est === 'PENDIENTE' ? 'badge-yellow'
+                : 'badge-red';
+      return `
         <tr>
-            <td><span class="badge badge-yellow">${Utils.or(f.id)}</span></td>
-            <td>${Utils.or(f.idSuscripcion)}</td>
-            <td style="color:var(--success)">
-              ${Utils.formatCOP(f.total)}
-            </td>
-            <td>${Utils.or(f.fechaEmision, '—')}</td>
-            <td><span class="badge ${cls}">${est}</span></td>
-        </tr>
-        `;
-        }).join('');
+          <td><span class="badge badge-yellow">${Utils.or(f.id)}</span></td>
+          <td>${Utils.or(f.idSuscripcion)}</td>
+          <td style="color:var(--success)">${Utils.formatCOP(f.total)}</td>
+          <td>—</td>
+          <td><span class="badge ${cls}">${est}</span></td>
+        </tr>`;
+    }).join('');
     }
 
   async load() {
@@ -47,8 +39,8 @@ export class FacturasView {
       Utils.populateSelect(
         'sel-suscr-factura',
         suscrip,
-        s => s.idSuscripcion ?? s.id,
-        s => `ID ${s.idSuscripcion ?? s.id} - ${s.cliente?.primerNombre ?? ''} ${s.cliente?.primerApellido ?? ''} [${s.plan?.nombrePlan ?? ''}]`
+        s => s.id,
+        s => `ID ${s.id} - ${s.clienteNombre ?? ''} [${s.planNombre ?? ''}]`
       );
 
       const data = await this.api.get('/api/facturas');
@@ -81,8 +73,7 @@ export class FacturasView {
           const filtradas = this._allFacturas.filter(f =>
             String(f.idFactura ?? f.id).includes(q) ||
             String(f.suscripcion?.idSuscripcion ?? f.idSuscripcion).includes(q) ||
-            (f.estado ?? '').toLowerCase().includes(q) ||
-            (f.fechaEmision ?? '').includes(q)
+            (f.estado ?? '').toLowerCase().includes(q)
           );
           this._renderTable(filtradas);
         });
@@ -99,10 +90,9 @@ export class FacturasView {
     event.preventDefault();
     const data = Utils.getFormData('form-factura');
 
-    const rawId = data.idPago ?? data.idSuscripcion;
     const payload = {
-      idSuscripcion: Number(rawId),
-      total:  parseFloat(data.total),
+      idSuscripcion: Number(data.idSuscripcion),
+      total:         parseFloat(data.total),
       fechaEmision:  data.fechaEmision || null,
     };
 

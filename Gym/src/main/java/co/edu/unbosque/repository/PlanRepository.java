@@ -33,7 +33,7 @@ public interface PlanRepository extends JpaRepository<Plan, Long> {
     List<Plan> planesLargos(@Param("dias") Integer dias);
 
     @Query(value = """
-        SELECT COUNT('a')
+        SELECT COUNT('X')
         FROM plan p
     """, nativeQuery = true)
     Long contarPlanes();

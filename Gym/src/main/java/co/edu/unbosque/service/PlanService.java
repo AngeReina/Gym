@@ -18,7 +18,7 @@ public class PlanService {
     public void crearPlan(PlanDTO dto) {
         Plan plan = new Plan();
         plan.setNombrePlan(dto.nombrePlan());
-        plan.setCosto(dto.precio());
+        plan.setCosto(dto.costo());
         plan.setDuracionDias(dto.duracionDias());
 
         planRepository.save(plan);

@@ -35,6 +35,10 @@ public class SuscripcionService {
         Plan plan = planRepository.findById(dto.idPlan())
                 .orElseThrow(() -> new RuntimeException("Plan no encontrado"));
 
+        if (suscripcionRepository.contarActivasPorCliente(dto.idCliente()) > 0) {
+            throw new RuntimeException("El cliente ya tiene una suscripción activa");
+        }
+
         LocalDate inicio = dto.fechaInicio() != null
                 ? dto.fechaInicio()
                 : LocalDate.now();
