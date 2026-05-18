@@ -18,7 +18,7 @@ class App {
 
   constructor() {
 
-    this.api   = new ApiService('http://localhost:8080');
+    this.api   = new ApiService('http://192.168.1.50:8080');
     this.toast = new ToastService('toast-container');
 
     this.views = {
