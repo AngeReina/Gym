@@ -58,7 +58,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.edu.unbosque.GymApplication</mainClass>
+                    <mainClass>co.edu.unbosque.GymApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
