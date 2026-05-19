@@ -16,7 +16,7 @@ public class Asistencia {
     private LocalDateTime fechaRegistro = LocalDateTime.now();
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_asistencia")
-    private EstadoAsistencia estadoAsistencia = EstadoAsistencia.PRESENTE; // Valor por defecto
+    private EstadoAsistencia estadoAsistencia = EstadoAsistencia.PRESENTE;
 
     @JsonIgnoreProperties({"suscripciones", "asistencias"})
     @ManyToOne

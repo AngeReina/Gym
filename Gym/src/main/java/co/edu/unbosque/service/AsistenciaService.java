@@ -37,7 +37,7 @@ public class AsistenciaService {
         Cliente cliente = clienteRepository.findById(dto.idCliente())
                 .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
 
-        // CORRECCIÓN 2: verificar suscripción activa
+
         if (suscripcionRepository.contarActivasPorCliente(dto.idCliente()) == 0) {
             throw new RuntimeException("El cliente no tiene una suscripción activa");
         }
@@ -45,7 +45,6 @@ public class AsistenciaService {
         Sesion sesion = sesionRepository.findById(dto.idSesion())
                 .orElseThrow(() -> new RuntimeException("Sesión no encontrada"));
 
-        // CORRECCIÓN 3: verificar y descontar cupo
         if (sesion.getCuposDisponibles() == null || sesion.getCuposDisponibles() <= 0) {
             throw new RuntimeException("No hay cupos disponibles en esta sesión");
         }

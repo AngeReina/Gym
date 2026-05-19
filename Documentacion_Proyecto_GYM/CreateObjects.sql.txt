@@ -1,0 +1,247 @@
+-- =============================================================
+--  PROYECTO GYM — SCRIPT DE CREACIÓN DE OBJETOS (DDL)
+--  Base de datos: PostgreSQL 18
+--  Autor: Proyecto académico — Ingeniería de Sistemas
+--  Descripción: Creación de base de datos, tipos ENUM,
+--               tablas, índices y secuencias del sistema GYM.
+-- =============================================================
+
+-- -------------------------------------------------------------
+-- 0. BASE DE DATOS
+-- -------------------------------------------------------------
+-- Ejecutar como superusuario si la BD no existe aún:
+-- CREATE DATABASE gym;
+-- \c gym
+
+-- -------------------------------------------------------------
+-- 1. TIPOS ENUM
+--    Se crean primero porque las tablas los referencian.
+-- -------------------------------------------------------------
+
+-- Estado de asistencia a una sesión
+CREATE TYPE estado_asistencia AS ENUM (
+    'PRESENTE',
+    'AUSENTE',
+    'TARDANZA'
+);
+
+-- Estado de una factura
+CREATE TYPE estado_factura AS ENUM (
+    'PENDIENTE',
+    'PAGADA',
+    'ANULADA'
+);
+
+-- Franquicia de tarjeta de pago
+CREATE TYPE franquicia_tarjeta AS ENUM (
+    'VISA',
+    'MASTERCARD',
+    'AMEX',
+    'DINERS'
+);
+
+-- Tipo de tarjeta de pago
+CREATE TYPE tipo_tarjeta AS ENUM (
+    'DEBITO',
+    'CREDITO'
+);
+
+-- --------------------------
+-- 2. TABLAS INDEPENDIENTES
+-- --------------------------
+
+-- 2.1 CLIENTE
+CREATE TABLE cliente (
+    id_cliente       SERIAL PRIMARY KEY,
+    primer_nombre    VARCHAR(50)  NOT NULL,
+    segundo_nombre   VARCHAR(50),
+    primer_apellido  VARCHAR(50)  NOT NULL,
+    segundo_apellido VARCHAR(50),
+    numero_documento VARCHAR(20)  UNIQUE NOT NULL,
+    tipo_documento   VARCHAR(10)  NOT NULL,
+    telefono         VARCHAR(20),
+    email            VARCHAR(100)
+);
+
+COMMENT ON TABLE  cliente                   IS 'Clientes registrados en el gimnasio';
+COMMENT ON COLUMN cliente.numero_documento  IS 'Cédula, NIT u otro identificador único del cliente';
+COMMENT ON COLUMN cliente.tipo_documento    IS 'CC, TI, CE, NIT, etc.';
+
+-- 2.2 INSTRUCTOR
+CREATE TABLE instructor (
+    id_instructor    SERIAL PRIMARY KEY,
+    primer_nombre    VARCHAR(50)  NOT NULL,
+    segundo_nombre   VARCHAR(50),
+    primer_apellido  VARCHAR(50)  NOT NULL,
+    segundo_apellido VARCHAR(50),
+    numero_documento VARCHAR(20)  UNIQUE NOT NULL,
+    tipo_documento   VARCHAR(10)  NOT NULL,
+    telefono         VARCHAR(20),
+    email            VARCHAR(100),
+    especialidad     VARCHAR(100)
+);
+
+COMMENT ON TABLE  instructor              IS 'Instructores que dirigen las sesiones';
+COMMENT ON COLUMN instructor.especialidad IS 'Ej: Yoga, CrossFit, Spinning, Musculación';
+
+-- 2.3 PLAN
+CREATE TABLE plan (
+    id_plan      SERIAL PRIMARY KEY,
+    nombre_plan  VARCHAR(100) NOT NULL,
+    costo        DECIMAL(10,2) NOT NULL,
+    duracion_dias INTEGER
+);
+
+COMMENT ON TABLE  plan               IS 'Planes de membresía disponibles en el gimnasio';
+COMMENT ON COLUMN plan.duracion_dias IS 'Duración del plan expresada en días (30, 60, 90, etc.)';
+
+-- 2.4 CLASE
+CREATE TABLE clase (
+    id_clase     SERIAL PRIMARY KEY,
+    nombre_clase VARCHAR(100) NOT NULL,
+    descripcion  TEXT
+);
+
+COMMENT ON TABLE clase IS 'Tipos de clases ofrecidas (Yoga, Spinning, Zumba, etc.)';
+
+-- --------------------------
+-- 3. TABLAS CON DEPENDENCIAS 
+-- --------------------------
+
+-- 3.1 SUSCRIPCION  (depende de cliente y plan)
+CREATE TABLE suscripcion (
+    id_suscripcion SERIAL PRIMARY KEY,
+    fecha_inicio   DATE         NOT NULL,
+    fecha_fin      DATE         NOT NULL,
+    costo          DECIMAL(10,2),
+    beneficios     TEXT,
+    estado         VARCHAR(20),
+    id_cliente     INT REFERENCES cliente(id_cliente) ON DELETE SET NULL,
+    id_plan        INT REFERENCES plan(id_plan)       ON DELETE SET NULL
+);
+
+COMMENT ON TABLE  suscripcion        IS 'Suscripciones de clientes a planes del gimnasio';
+COMMENT ON COLUMN suscripcion.estado IS 'ACTIVA, VENCIDA, CANCELADA';
+
+-- 3.2 SESION  (depende de clase e instructor)
+CREATE TABLE sesion (
+    id_sesion          SERIAL PRIMARY KEY,
+    fecha              DATE    NOT NULL,
+    hora_inicio        TIME,
+    hora_fin           TIME,
+    cupo_max           INT     NOT NULL,
+    cupos_disponibles  INT     NOT NULL,
+    id_clase           INT REFERENCES clase(id_clase)           ON DELETE SET NULL,
+    id_instructor      INT REFERENCES instructor(id_instructor) ON DELETE SET NULL
+);
+
+COMMENT ON TABLE  sesion                   IS 'Sesiones programadas de cada clase con instructor y horario';
+COMMENT ON COLUMN sesion.cupos_disponibles IS 'Se actualiza cada vez que un cliente registra asistencia';
+
+-- ---------------------------
+-- 4. TABLAS CON DEPENDENCIAS
+-- ---------------------------
+
+-- 4.1 FACTURA  (depende de suscripcion)
+CREATE TABLE factura (
+    id_factura     SERIAL PRIMARY KEY,
+    fecha_emision  TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    total_factura  DECIMAL(10,2) NOT NULL,
+    estado         estado_factura NOT NULL DEFAULT 'PENDIENTE',
+    id_suscripcion INT REFERENCES suscripcion(id_suscripcion) ON DELETE SET NULL
+);
+
+COMMENT ON TABLE  factura        IS 'Facturas generadas por las suscripciones de los clientes';
+COMMENT ON COLUMN factura.estado IS 'PENDIENTE (default), PAGADA, ANULADA';
+
+-- 4.2 ASISTENCIA  (depende de cliente y sesion) — relación M:N resuelta
+CREATE TABLE asistencia (
+    id_asistencia    SERIAL PRIMARY KEY,
+    fecha_registro   TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
+    estado_asistencia estado_asistencia NOT NULL DEFAULT 'PRESENTE',
+    id_cliente       INT REFERENCES cliente(id_cliente) ON DELETE CASCADE,
+    id_sesion        INT REFERENCES sesion(id_sesion)   ON DELETE CASCADE
+);
+
+COMMENT ON TABLE  asistencia                  IS 'Registro de asistencia de clientes a sesiones (M:N resuelto)';
+COMMENT ON COLUMN asistencia.estado_asistencia IS 'PRESENTE (default), AUSENTE, TARDANZA';
+
+-- ---------------------------
+-- 5. TABLAS CON DEPENDENCIAS
+-- ---------------------------
+
+-- 5.1 PAGO  (depende de factura — relación 1:1)
+CREATE TABLE pago (
+    id_pago      SERIAL PRIMARY KEY,
+    total_recibo DECIMAL(10,2) NOT NULL,
+    fecha        TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+    id_factura   INT UNIQUE REFERENCES factura(id_factura) ON DELETE SET NULL
+);
+
+COMMENT ON TABLE  pago           IS 'Pago realizado para liquidar una factura (1 pago por factura)';
+COMMENT ON COLUMN pago.id_factura IS 'UNIQUE garantiza la relación 1:1 con factura';
+
+-- -------------------------------------------------------------
+-- 6. TABLAS DE MEDIOS DE PAGO (dependen de pago)
+-- -------------------------------------------------------------
+
+-- 6.1 EFECTIVO
+CREATE TABLE efectivo (
+    id_efectivo SERIAL PRIMARY KEY,
+    monto       DECIMAL(10,2) NOT NULL,
+    id_pago     INT REFERENCES pago(id_pago) ON DELETE CASCADE
+);
+
+COMMENT ON TABLE efectivo IS 'Detalle de pagos realizados en efectivo';
+
+-- 6.2 TARJETA
+CREATE TABLE tarjeta (
+    id_tarjeta  SERIAL PRIMARY KEY,
+    monto       DECIMAL(10,2)    NOT NULL,
+    franquicia  franquicia_tarjeta,
+    tipo        tipo_tarjeta,
+    id_pago     INT REFERENCES pago(id_pago) ON DELETE CASCADE
+);
+
+COMMENT ON TABLE  tarjeta    IS 'Detalle de pagos realizados con tarjeta débito o crédito';
+COMMENT ON COLUMN tarjeta.franquicia IS 'VISA, MASTERCARD, AMEX, DINERS';
+COMMENT ON COLUMN tarjeta.tipo       IS 'DEBITO o CREDITO';
+
+-- 6.3 TRANSFERENCIA
+CREATE TABLE transferencia (
+    id_transferencia    SERIAL PRIMARY KEY,
+    monto               DECIMAL(10,2) NOT NULL,
+    banco_origen        VARCHAR(50),
+    numero_transaccion  VARCHAR(50),
+    id_pago             INT REFERENCES pago(id_pago) ON DELETE CASCADE
+);
+
+COMMENT ON TABLE transferencia IS 'Detalle de pagos realizados por transferencia bancaria';
+
+-- -----------
+-- 7. ÍNDICES
+-- -----------
+
+-- Índices en llaves foráneas (PostgreSQL no las indexa automáticamente)
+CREATE INDEX idx_suscripcion_cliente    ON suscripcion(id_cliente);
+CREATE INDEX idx_suscripcion_plan       ON suscripcion(id_plan);
+CREATE INDEX idx_sesion_clase           ON sesion(id_clase);
+CREATE INDEX idx_sesion_instructor      ON sesion(id_instructor);
+CREATE INDEX idx_asistencia_cliente     ON asistencia(id_cliente);
+CREATE INDEX idx_asistencia_sesion      ON asistencia(id_sesion);
+CREATE INDEX idx_factura_suscripcion    ON factura(id_suscripcion);
+CREATE INDEX idx_pago_factura           ON pago(id_factura);
+CREATE INDEX idx_efectivo_pago          ON efectivo(id_pago);
+CREATE INDEX idx_tarjeta_pago           ON tarjeta(id_pago);
+CREATE INDEX idx_transferencia_pago     ON transferencia(id_pago);
+
+-- Índices en columnas de búsqueda frecuente
+CREATE INDEX idx_cliente_documento      ON cliente(numero_documento);
+CREATE INDEX idx_instructor_documento   ON instructor(numero_documento);
+CREATE INDEX idx_sesion_fecha           ON sesion(fecha);
+CREATE INDEX idx_factura_estado         ON factura(estado);
+CREATE INDEX idx_suscripcion_estado     ON suscripcion(estado);
+
+-- =============================================================
+--  FIN DEL SCRIPT DE CREACIÓN
+-- =============================================================

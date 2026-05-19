@@ -1,0 +1,435 @@
+-- =============================================================
+--  SECCIÓN A — CONSULTAS DE NEGOCIO
+-- =============================================================
+
+-- A.1  Lista completa de clientes con sus suscripciones activas
+SELECT
+    c.id_cliente,
+    c.primer_nombre || ' ' || c.primer_apellido AS nombre_cliente,
+    c.numero_documento,
+    p.nombre_plan,
+    s.fecha_inicio,
+    s.fecha_fin,
+    s.estado AS estado_suscripcion
+FROM cliente c
+JOIN suscripcion s ON s.id_cliente = c.id_cliente
+JOIN plan p        ON p.id_plan    = s.id_plan
+WHERE s.estado = 'ACTIVA'
+ORDER BY s.fecha_fin ASC;
+
+-- A.2  Sesiones programadas con instructor y cupos disponibles
+SELECT
+    se.id_sesion,
+    cl.nombre_clase,
+    se.fecha,
+    se.hora_inicio,
+    se.hora_fin,
+    i.primer_nombre || ' ' || i.primer_apellido AS instructor,
+    se.cupo_max,
+    se.cupos_disponibles,
+    (se.cupo_max - se.cupos_disponibles) AS inscritos
+FROM sesion se
+JOIN clase cl       ON cl.id_clase       = se.id_clase
+JOIN instructor i   ON i.id_instructor   = se.id_instructor
+ORDER BY se.fecha, se.hora_inicio;
+
+-- A.3  Historial de asistencia de un cliente (reemplazar el ID)
+SELECT
+    a.fecha_registro,
+    cl.nombre_clase,
+    se.fecha       AS fecha_sesion,
+    se.hora_inicio,
+    se.hora_fin,
+    a.estado_asistencia
+FROM asistencia a
+JOIN sesion se  ON se.id_sesion = a.id_sesion
+JOIN clase cl   ON cl.id_clase  = se.id_clase
+WHERE a.id_cliente = 1
+ORDER BY a.fecha_registro DESC;
+
+-- A.4  Facturas pendientes de pago con datos del cliente
+SELECT
+    f.id_factura,
+    c.primer_nombre || ' ' || c.primer_apellido AS cliente,
+    c.telefono,
+    p.nombre_plan,
+    f.fecha_emision,
+    f.total_factura,
+    f.estado
+FROM factura f
+JOIN suscripcion s ON s.id_suscripcion = f.id_suscripcion
+JOIN cliente c     ON c.id_cliente     = s.id_cliente
+JOIN plan p        ON p.id_plan        = s.id_plan
+WHERE f.estado = 'PENDIENTE'
+ORDER BY f.fecha_emision ASC;
+
+-- A.5  Ingresos totales por mes (pagos realizados)
+SELECT
+    DATE_TRUNC('month', pa.fecha) AS mes,
+    COUNT(pa.id_pago)             AS numero_pagos,
+    SUM(pa.total_recibo)          AS ingresos_totales
+FROM pago pa
+GROUP BY DATE_TRUNC('month', pa.fecha)
+ORDER BY mes DESC;
+
+-- A.6  Ingresos por medio de pago
+SELECT 'Efectivo'      AS medio, COUNT(*) AS transacciones, SUM(monto) AS total FROM efectivo
+UNION ALL
+SELECT 'Tarjeta'       AS medio, COUNT(*), SUM(monto) FROM tarjeta
+UNION ALL
+SELECT 'Transferencia' AS medio, COUNT(*), SUM(monto) FROM transferencia
+ORDER BY total DESC;
+
+-- A.7  Top 5 clases con más asistencias
+SELECT
+    cl.nombre_clase,
+    COUNT(a.id_asistencia) AS total_asistencias
+FROM asistencia a
+JOIN sesion se ON se.id_sesion = a.id_sesion
+JOIN clase cl  ON cl.id_clase  = se.id_clase
+WHERE a.estado_asistencia = 'PRESENTE'
+GROUP BY cl.nombre_clase
+ORDER BY total_asistencias DESC
+LIMIT 5;
+
+-- A.8  Instructores y cantidad de sesiones que han impartido
+SELECT
+    i.id_instructor,
+    i.primer_nombre || ' ' || i.primer_apellido AS instructor,
+    i.especialidad,
+    COUNT(s.id_sesion) AS sesiones_impartidas
+FROM instructor i
+LEFT JOIN sesion s ON s.id_instructor = i.id_instructor
+GROUP BY i.id_instructor, i.primer_nombre, i.primer_apellido, i.especialidad
+ORDER BY sesiones_impartidas DESC;
+
+-- A.9  Suscripciones próximas a vencer (en los próximos 7 días)
+SELECT
+    c.primer_nombre || ' ' || c.primer_apellido AS cliente,
+    c.telefono,
+    c.email,
+    p.nombre_plan,
+    s.fecha_fin,
+    (s.fecha_fin - CURRENT_DATE) AS dias_restantes
+FROM suscripcion s
+JOIN cliente c ON c.id_cliente = s.id_cliente
+JOIN plan p    ON p.id_plan    = s.id_plan
+WHERE s.estado = 'ACTIVA'
+  AND s.fecha_fin BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '7 days'
+ORDER BY s.fecha_fin ASC;
+
+-- A.10 Clientes con mayor número de asistencias en el mes actual
+SELECT
+    c.id_cliente,
+    c.primer_nombre || ' ' || c.primer_apellido AS cliente,
+    COUNT(a.id_asistencia) AS asistencias_mes
+FROM asistencia a
+JOIN cliente c ON c.id_cliente = a.id_cliente
+WHERE DATE_TRUNC('month', a.fecha_registro) = DATE_TRUNC('month', CURRENT_DATE)
+  AND a.estado_asistencia = 'PRESENTE'
+GROUP BY c.id_cliente, c.primer_nombre, c.primer_apellido
+ORDER BY asistencias_mes DESC
+LIMIT 10;
+
+
+-- =============================================================
+--  SECCIÓN B — VISTAS
+-- =============================================================
+
+-- B.1  Vista: estado general de suscripciones
+CREATE OR REPLACE VIEW vw_suscripciones_activas AS
+SELECT
+    s.id_suscripcion,
+    c.primer_nombre || ' ' || c.primer_apellido AS cliente,
+    c.numero_documento,
+    c.telefono,
+    p.nombre_plan,
+    s.fecha_inicio,
+    s.fecha_fin,
+    (s.fecha_fin - CURRENT_DATE) AS dias_restantes,
+    s.estado
+FROM suscripcion s
+JOIN cliente c ON c.id_cliente = s.id_cliente
+JOIN plan p    ON p.id_plan    = s.id_plan
+WHERE s.estado = 'ACTIVA';
+
+COMMENT ON VIEW vw_suscripciones_activas IS 'Muestra todas las suscripciones en estado ACTIVA con días restantes';
+
+-- B.2  Vista: resumen de caja (pagos y medios)
+CREATE OR REPLACE VIEW vw_resumen_caja AS
+SELECT
+    pa.id_pago,
+    pa.fecha,
+    pa.total_recibo,
+    c.primer_nombre || ' ' || c.primer_apellido AS cliente,
+    pl.nombre_plan,
+    CASE
+        WHEN ef.id_efectivo     IS NOT NULL THEN 'Efectivo'
+        WHEN ta.id_tarjeta      IS NOT NULL THEN 'Tarjeta (' || ta.franquicia::TEXT || ' - ' || ta.tipo::TEXT || ')'
+        WHEN tr.id_transferencia IS NOT NULL THEN 'Transferencia (' || tr.banco_origen || ')'
+        ELSE 'Sin detalle'
+    END AS medio_pago
+FROM pago pa
+JOIN factura f      ON f.id_factura     = pa.id_factura
+JOIN suscripcion s  ON s.id_suscripcion = f.id_suscripcion
+JOIN cliente c      ON c.id_cliente     = s.id_cliente
+JOIN plan pl        ON pl.id_plan       = s.id_plan
+LEFT JOIN efectivo     ef ON ef.id_pago = pa.id_pago
+LEFT JOIN tarjeta      ta ON ta.id_pago = pa.id_pago
+LEFT JOIN transferencia tr ON tr.id_pago = pa.id_pago
+ORDER BY pa.fecha DESC;
+
+COMMENT ON VIEW vw_resumen_caja IS 'Resumen de todos los pagos con el medio de pago utilizado';
+
+-- B.3  Vista: ocupación de sesiones
+CREATE OR REPLACE VIEW vw_ocupacion_sesiones AS
+SELECT
+    se.id_sesion,
+    cl.nombre_clase,
+    se.fecha,
+    se.hora_inicio,
+    se.hora_fin,
+    i.primer_nombre || ' ' || i.primer_apellido AS instructor,
+    se.cupo_max,
+    se.cupos_disponibles,
+    (se.cupo_max - se.cupos_disponibles)   AS inscritos,
+    ROUND(
+        (se.cupo_max - se.cupos_disponibles)::NUMERIC / se.cupo_max * 100, 1
+    ) AS porcentaje_ocupacion
+FROM sesion se
+JOIN clase cl      ON cl.id_clase      = se.id_clase
+JOIN instructor i  ON i.id_instructor  = se.id_instructor;
+
+COMMENT ON VIEW vw_ocupacion_sesiones IS 'Muestra el porcentaje de ocupación de cada sesión';
+
+
+-- =============================================================
+--  SECCIÓN C — FUNCIONES
+-- =============================================================
+
+-- C.1  Función: obtener nombre completo del cliente
+CREATE OR REPLACE FUNCTION fn_nombre_cliente(p_id_cliente INT)
+RETURNS TEXT AS $$
+DECLARE
+    v_nombre TEXT;
+BEGIN
+    SELECT
+        TRIM(primer_nombre || ' ' ||
+             COALESCE(segundo_nombre || ' ', '') ||
+             primer_apellido || ' ' ||
+             COALESCE(segundo_apellido, ''))
+    INTO v_nombre
+    FROM cliente
+    WHERE id_cliente = p_id_cliente;
+
+    RETURN COALESCE(v_nombre, 'Cliente no encontrado');
+END;
+$$ LANGUAGE plpgsql;
+
+COMMENT ON FUNCTION fn_nombre_cliente IS 'Retorna el nombre completo del cliente dado su ID';
+
+-- Ejemplo de uso:
+-- SELECT fn_nombre_cliente(1);
+
+-- C.2  Función: calcular ingresos en un rango de fechas
+CREATE OR REPLACE FUNCTION fn_ingresos_periodo(
+    p_fecha_inicio DATE,
+    p_fecha_fin    DATE
+)
+RETURNS DECIMAL(12,2) AS $$
+DECLARE
+    v_total DECIMAL(12,2);
+BEGIN
+    SELECT COALESCE(SUM(total_recibo), 0)
+    INTO v_total
+    FROM pago
+    WHERE fecha::DATE BETWEEN p_fecha_inicio AND p_fecha_fin;
+
+    RETURN v_total;
+END;
+$$ LANGUAGE plpgsql;
+
+COMMENT ON FUNCTION fn_ingresos_periodo IS 'Retorna el total de ingresos entre dos fechas dadas';
+
+-- Ejemplo de uso:
+-- SELECT fn_ingresos_periodo('2025-01-01', '2025-05-31');
+
+-- C.3  Función: verificar si un cliente tiene suscripción activa
+CREATE OR REPLACE FUNCTION fn_tiene_suscripcion_activa(p_id_cliente INT)
+RETURNS BOOLEAN AS $$
+BEGIN
+    RETURN EXISTS (
+        SELECT 1
+        FROM suscripcion
+        WHERE id_cliente = p_id_cliente
+          AND estado = 'ACTIVA'
+          AND fecha_fin >= CURRENT_DATE
+    );
+END;
+$$ LANGUAGE plpgsql;
+
+COMMENT ON FUNCTION fn_tiene_suscripcion_activa IS 'Retorna TRUE si el cliente tiene al menos una suscripción vigente';
+
+-- Ejemplo de uso:
+-- SELECT fn_tiene_suscripcion_activa(1);
+
+
+-- =============================================================
+--  SECCIÓN D — TRIGGERS
+-- =============================================================
+
+-- D.1  Trigger: actualizar cupos_disponibles al registrar asistencia
+--      Cada vez que se inserta una asistencia, se descuenta
+--      un cupo de la sesión correspondiente.
+
+CREATE OR REPLACE FUNCTION trg_fn_descontar_cupo()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE sesion
+    SET cupos_disponibles = cupos_disponibles - 1
+    WHERE id_sesion = NEW.id_sesion
+      AND cupos_disponibles > 0;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'No hay cupos disponibles para la sesión %', NEW.id_sesion;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_descontar_cupo
+AFTER INSERT ON asistencia
+FOR EACH ROW
+EXECUTE FUNCTION trg_fn_descontar_cupo();
+
+COMMENT ON TRIGGER trg_descontar_cupo ON asistencia
+    IS 'Descuenta automáticamente un cupo de la sesión al registrar una asistencia';
+
+-- D.2  Trigger: marcar factura como PAGADA al registrar un pago
+CREATE OR REPLACE FUNCTION trg_fn_marcar_factura_pagada()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE factura
+    SET estado = 'PAGADA'
+    WHERE id_factura = NEW.id_factura;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_marcar_factura_pagada
+AFTER INSERT ON pago
+FOR EACH ROW
+EXECUTE FUNCTION trg_fn_marcar_factura_pagada();
+
+COMMENT ON TRIGGER trg_marcar_factura_pagada ON pago
+    IS 'Cambia el estado de la factura a PAGADA automáticamente al registrar el pago';
+
+-- D.3  Trigger: log de auditoría — detectar suscripciones canceladas
+--      (requiere tabla de auditoría)
+CREATE TABLE IF NOT EXISTS auditoria_suscripcion (
+    id_auditoria    SERIAL PRIMARY KEY,
+    id_suscripcion  INT,
+    estado_anterior VARCHAR(20),
+    estado_nuevo    VARCHAR(20),
+    fecha_cambio    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    usuario_db      TEXT DEFAULT CURRENT_USER
+);
+
+CREATE OR REPLACE FUNCTION trg_fn_auditoria_suscripcion()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF OLD.estado IS DISTINCT FROM NEW.estado THEN
+        INSERT INTO auditoria_suscripcion (id_suscripcion, estado_anterior, estado_nuevo)
+        VALUES (OLD.id_suscripcion, OLD.estado, NEW.estado);
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_auditoria_suscripcion
+AFTER UPDATE OF estado ON suscripcion
+FOR EACH ROW
+EXECUTE FUNCTION trg_fn_auditoria_suscripcion();
+
+COMMENT ON TRIGGER trg_auditoria_suscripcion ON suscripcion
+    IS 'Registra en auditoría cada cambio de estado de una suscripción';
+
+
+-- =============================================================
+--  SECCIÓN E — MANTENIMIENTO Y UTILIDADES
+-- =============================================================
+
+-- E.1  Marcar como VENCIDAS las suscripciones cuya fecha_fin ya pasó
+UPDATE suscripcion
+SET estado = 'VENCIDA'
+WHERE estado = 'ACTIVA'
+  AND fecha_fin < CURRENT_DATE;
+
+-- E.2  Ver tamaño de cada tabla en la base de datos
+SELECT
+    relname                              AS tabla,
+    pg_size_pretty(pg_total_relation_size(oid)) AS tamaño_total
+FROM pg_class
+WHERE relkind = 'r'
+  AND relnamespace = (SELECT oid FROM pg_namespace WHERE nspname = 'public')
+ORDER BY pg_total_relation_size(oid) DESC;
+
+-- E.3  Reiniciar secuencias (útil tras carga masiva de datos)
+-- Descomenta y ajusta según sea necesario:
+-- SELECT setval('cliente_id_cliente_seq',      (SELECT MAX(id_cliente)      FROM cliente));
+-- SELECT setval('instructor_id_instructor_seq',(SELECT MAX(id_instructor)   FROM instructor));
+-- SELECT setval('plan_id_plan_seq',            (SELECT MAX(id_plan)         FROM plan));
+-- SELECT setval('clase_id_clase_seq',          (SELECT MAX(id_clase)        FROM clase));
+-- SELECT setval('suscripcion_id_suscripcion_seq',(SELECT MAX(id_suscripcion) FROM suscripcion));
+-- SELECT setval('sesion_id_sesion_seq',        (SELECT MAX(id_sesion)       FROM sesion));
+-- SELECT setval('asistencia_id_asistencia_seq',(SELECT MAX(id_asistencia)   FROM asistencia));
+-- SELECT setval('factura_id_factura_seq',      (SELECT MAX(id_factura)      FROM factura));
+-- SELECT setval('pago_id_pago_seq',            (SELECT MAX(id_pago)         FROM pago));
+-- SELECT setval('efectivo_id_efectivo_seq',    (SELECT MAX(id_efectivo)     FROM efectivo));
+-- SELECT setval('tarjeta_id_tarjeta_seq',      (SELECT MAX(id_tarjeta)      FROM tarjeta));
+-- SELECT setval('transferencia_id_transferencia_seq',(SELECT MAX(id_transferencia) FROM transferencia));
+
+-- E.4  Script de limpieza completa (¡PELIGROSO — solo para entorno de pruebas!)
+-- Elimina todos los datos en orden inverso de dependencias:
+/*
+TRUNCATE TABLE auditoria_suscripcion   RESTART IDENTITY CASCADE;
+TRUNCATE TABLE transferencia           RESTART IDENTITY CASCADE;
+TRUNCATE TABLE tarjeta                 RESTART IDENTITY CASCADE;
+TRUNCATE TABLE efectivo                RESTART IDENTITY CASCADE;
+TRUNCATE TABLE pago                    RESTART IDENTITY CASCADE;
+TRUNCATE TABLE factura                 RESTART IDENTITY CASCADE;
+TRUNCATE TABLE asistencia              RESTART IDENTITY CASCADE;
+TRUNCATE TABLE sesion                  RESTART IDENTITY CASCADE;
+TRUNCATE TABLE suscripcion             RESTART IDENTITY CASCADE;
+TRUNCATE TABLE clase                   RESTART IDENTITY CASCADE;
+TRUNCATE TABLE plan                    RESTART IDENTITY CASCADE;
+TRUNCATE TABLE instructor              RESTART IDENTITY CASCADE;
+TRUNCATE TABLE cliente                 RESTART IDENTITY CASCADE;
+*/
+
+-- E.5  DROP completo (eliminar todo el esquema — solo pruebas)
+/*
+DROP TABLE IF EXISTS auditoria_suscripcion CASCADE;
+DROP TABLE IF EXISTS transferencia         CASCADE;
+DROP TABLE IF EXISTS tarjeta               CASCADE;
+DROP TABLE IF EXISTS efectivo              CASCADE;
+DROP TABLE IF EXISTS pago                  CASCADE;
+DROP TABLE IF EXISTS factura               CASCADE;
+DROP TABLE IF EXISTS asistencia            CASCADE;
+DROP TABLE IF EXISTS sesion                CASCADE;
+DROP TABLE IF EXISTS suscripcion           CASCADE;
+DROP TABLE IF EXISTS clase                 CASCADE;
+DROP TABLE IF EXISTS plan                  CASCADE;
+DROP TABLE IF EXISTS instructor            CASCADE;
+DROP TABLE IF EXISTS cliente               CASCADE;
+DROP TYPE  IF EXISTS estado_asistencia     CASCADE;
+DROP TYPE  IF EXISTS estado_factura        CASCADE;
+DROP TYPE  IF EXISTS franquicia_tarjeta    CASCADE;
+DROP TYPE  IF EXISTS tipo_tarjeta          CASCADE;
+*/
+
+-- =============================================================
+--  FIN DEL SCRIPT DE SCRIPTS VARIOS
+-- =============================================================

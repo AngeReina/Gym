@@ -1,0 +1,140 @@
+-- -------------------------------------------------------------
+-- 1. CLIENTES  (10 registros)
+-- -------------------------------------------------------------
+INSERT INTO cliente (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido,
+                     numero_documento, tipo_documento, telefono, email)
+VALUES
+    ('María',    'Alejandra', 'González',  'Ruiz',      '1020304050', 'CC', '3101234567', 'maria.gonzalez@email.com'),
+    ('Carlos',   'Andrés',   'Martínez',  'López',     '1030405060', 'CC', '3112345678', 'carlos.martinez@email.com'),
+    ('Luisa',    NULL,        'Fernández', 'Torres',    '1040506070', 'CC', '3123456789', 'luisa.fernandez@email.com'),
+    ('Andrés',   'Felipe',   'Ramírez',   'Gómez',     '1050607080', 'CC', '3134567890', 'andres.ramirez@email.com'),
+    ('Valentina',NULL,        'Moreno',    'Castillo',  '1060708090', 'CC', '3145678901', 'valentina.moreno@email.com'),
+    ('Santiago', 'José',     'Herrera',   'Mendoza',   '1070809010', 'CC', '3156789012', 'santiago.herrera@email.com'),
+    ('Daniela',  'Sofía',    'Vargas',    'Ríos',      '1080900100', 'CC', '3167890123', 'daniela.vargas@email.com'),
+    ('Sebastián',NULL,        'Jiménez',   'Suárez',    '1090010200', 'CC', '3178901234', 'sebastian.jimenez@email.com'),
+    ('Camila',   'Isabel',   'Díaz',      'Peña',      '1100102030', 'CC', '3189012345', 'camila.diaz@email.com'),
+    ('Miguel',   'Ángel',    'Rojas',     'Vásquez',   '1110203040', 'CC', '3190123456', 'miguel.rojas@email.com');
+ 
+-- -------------------------------------------------------------
+-- 2. INSTRUCTORES  (5 registros)
+-- -------------------------------------------------------------
+INSERT INTO instructor (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido,
+                        numero_documento, tipo_documento, telefono, email, especialidad)
+VALUES
+    ('Laura',    'Patricia', 'Sánchez',  'Ossa',      '2010203040', 'CC', '3201234567', 'laura.sanchez@gym.com',   'Yoga y Meditación'),
+    ('Ricardo',  NULL,        'Ospina',   'Cárdenas',  '2020304050', 'CC', '3212345678', 'ricardo.ospina@gym.com',  'CrossFit y Funcional'),
+    ('Paola',    'Andrea',   'Castro',   'Murillo',   '2030405060', 'CC', '3223456789', 'paola.castro@gym.com',    'Spinning y Cardio'),
+    ('Hernán',   'Darío',    'Molina',   'Acosta',    '2040506070', 'CC', '3234567890', 'hernan.molina@gym.com',   'Musculación y Pesistas'),
+    ('Juliana',  NULL,        'Prada',    'Lozano',    '2050607080', 'CC', '3245678901', 'juliana.prada@gym.com',   'Zumba y Aeróbicos');
+ 
+-- -------------------------------------------------------------
+-- 3. PLANES  (4 registros)
+-- -------------------------------------------------------------
+INSERT INTO plan (nombre_plan, costo, duracion_dias)
+VALUES
+    ('Plan Básico',      79000.00,  30),
+    ('Plan Estándar',   129000.00,  60),
+    ('Plan Premium',    199000.00,  90),
+    ('Plan Anual',      599000.00, 365);
+ 
+-- -------------------------------------------------------------
+-- 4. CLASES  (5 registros)
+-- -------------------------------------------------------------
+INSERT INTO clase (nombre_clase, descripcion)
+VALUES
+    ('Yoga',       'Clase de yoga orientada a la flexibilidad, respiración y equilibrio mental. Apta para todos los niveles.'),
+    ('CrossFit',   'Entrenamiento funcional de alta intensidad que combina levantamiento de pesas, cardio y gimnasia.'),
+    ('Spinning',   'Clase de ciclismo indoor con música y variaciones de ritmo para mejorar la resistencia cardiovascular.'),
+    ('Zumba',      'Clase de baile aeróbico con ritmos latinos que combina ejercicio y diversión.'),
+    ('Musculación','Sesión de entrenamiento de fuerza con equipos de pesas y máquinas guiadas por instructor.');
+ 
+-- -------------------------------------------------------------
+-- 5. SUSCRIPCIONES  (8 registros)
+-- -------------------------------------------------------------
+INSERT INTO suscripcion (fecha_inicio, fecha_fin, costo, beneficios, estado, id_cliente, id_plan)
+VALUES
+    ('2025-01-01', '2025-01-31',  79000.00, 'Acceso sala principal, vestiarios',              'VENCIDA',  1, 1),
+    ('2025-02-01', '2025-03-31', 129000.00, 'Acceso sala principal, clases grupales',          'VENCIDA',  2, 2),
+    ('2025-03-01', '2025-05-29', 199000.00, 'Acceso completo, clases grupales, nutricionista', 'ACTIVA',   3, 3),
+    ('2025-04-01', '2026-03-31', 599000.00, 'Acceso ilimitado, clases, nutricionista, spa',    'ACTIVA',   4, 4),
+    ('2025-04-15', '2025-05-14',  79000.00, 'Acceso sala principal',                           'ACTIVA',   5, 1),
+    ('2025-03-10', '2025-05-08', 129000.00, 'Acceso sala principal, clases grupales',          'ACTIVA',   6, 2),
+    ('2025-02-20', '2025-05-20', 199000.00, 'Acceso completo, clases, nutricionista',          'ACTIVA',   7, 3),
+    ('2025-01-05', '2025-01-20',  79000.00, 'Acceso sala principal',                           'CANCELADA',8, 1);
+ 
+-- -------------------------------------------------------------
+-- 6. SESIONES  (8 registros)
+-- -------------------------------------------------------------
+INSERT INTO sesion (fecha, hora_inicio, hora_fin, cupo_max, cupos_disponibles, id_clase, id_instructor)
+VALUES
+    ('2025-05-05', '07:00', '08:00', 15, 10, 1, 1),  -- Yoga - Laura
+    ('2025-05-05', '09:00', '10:30', 12,  8, 2, 2),  -- CrossFit - Ricardo
+    ('2025-05-06', '06:00', '07:00', 20, 14, 3, 3),  -- Spinning - Paola
+    ('2025-05-06', '17:00', '18:00', 25, 20, 4, 5),  -- Zumba - Juliana
+    ('2025-05-07', '08:00', '09:30', 10,  5, 5, 4),  -- Musculación - Hernán
+    ('2025-05-07', '18:00', '19:00', 15, 12, 1, 1),  -- Yoga tarde - Laura
+    ('2025-05-08', '10:00', '11:30', 12,  9, 2, 2),  -- CrossFit - Ricardo
+    ('2025-05-08', '16:00', '17:00', 20, 18, 4, 5);  -- Zumba - Juliana
+ 
+-- -------------------------------------------------------------
+-- 7. ASISTENCIAS  (10 registros)
+-- -------------------------------------------------------------
+INSERT INTO asistencia (fecha_registro, estado_asistencia, id_cliente, id_sesion)
+VALUES
+    ('2025-05-05 06:55:00', 'PRESENTE',  1, 1),
+    ('2025-05-05 07:12:00', 'TARDANZA',  2, 1),
+    ('2025-05-05 09:02:00', 'PRESENTE',  3, 2),
+    ('2025-05-05 09:00:00', 'PRESENTE',  4, 2),
+    ('2025-05-06 05:58:00', 'PRESENTE',  5, 3),
+    ('2025-05-06 06:10:00', 'TARDANZA',  6, 3),
+    ('2025-05-06 17:05:00', 'PRESENTE',  7, 4),
+    ('2025-05-07 08:00:00', 'PRESENTE',  1, 5),
+    ('2025-05-07 18:02:00', 'PRESENTE',  3, 6),
+    ('2025-05-07 08:30:00', 'AUSENTE',   8, 5);
+ 
+-- -------------------------------------------------------------
+-- 8. FACTURAS  (6 registros)
+-- -------------------------------------------------------------
+INSERT INTO factura (fecha_emision, total_factura, estado, id_suscripcion)
+VALUES
+    ('2025-01-01 09:00:00',  79000.00, 'PAGADA',    1),
+    ('2025-02-01 10:00:00', 129000.00, 'PAGADA',    2),
+    ('2025-03-01 08:30:00', 199000.00, 'PAGADA',    3),
+    ('2025-04-01 11:00:00', 599000.00, 'PENDIENTE', 4),
+    ('2025-04-15 09:45:00',  79000.00, 'PAGADA',    5),
+    ('2025-03-10 10:15:00', 129000.00, 'PENDIENTE', 6);
+ 
+-- -------------------------------------------------------------
+-- 9. PAGOS  (4 registros — solo facturas PAGADAS)
+-- -------------------------------------------------------------
+INSERT INTO pago (total_recibo, fecha, id_factura)
+VALUES
+    ( 79000.00, '2025-01-01 09:30:00', 1),
+    (129000.00, '2025-02-01 10:15:00', 2),
+    (199000.00, '2025-03-01 09:00:00', 3),
+    ( 79000.00, '2025-04-15 10:00:00', 5);
+ 
+-- -------------------------------------------------------------
+-- 10. MEDIOS DE PAGO
+-- -------------------------------------------------------------
+ 
+-- 10.1 EFECTIVO  (pago 1 — 79,000 COP en efectivo)
+INSERT INTO efectivo (monto, id_pago)
+VALUES (79000.00, 1);
+ 
+-- 10.2 TARJETA  (pago 2 — 129,000 COP con Visa débito)
+INSERT INTO tarjeta (monto, franquicia, tipo, id_pago)
+VALUES (129000.00, 'VISA', 'DEBITO', 2);
+ 
+-- 10.3 TRANSFERENCIA  (pago 3 — 199,000 COP por PSE/Bancolombia)
+INSERT INTO transferencia (monto, banco_origen, numero_transaccion, id_pago)
+VALUES (199000.00, 'Bancolombia', 'TXN-2025-BC-00341', 3);
+ 
+-- 10.4 TARJETA  (pago 4 — 79,000 COP con Mastercard crédito)
+INSERT INTO tarjeta (monto, franquicia, tipo, id_pago)
+VALUES (79000.00, 'MASTERCARD', 'CREDITO', 4);
+ 
+-- =============================================================
+--  FIN DEL SCRIPT DE INSERCIÓN
+-- =============================================================
+ 
