@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B86FDA4D-676F-BE80-4FD8-2388D7D161D6" name="TIPO_CLASE">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>A253CADA-ED3A-46E9-269C-FA6E80D7D2A7</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_tipo_clase" id="4FF67900-E7CB-2828-2D0C-6D7B79E7F948">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>7E9B1D8F-760A-3433-97F0-E55B0C07C038</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre_clase" id="B2A4A834-F511-2003-D127-36B220014300">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>24379C56-9FB5-1B4E-5767-DF996A7C65DA</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Descripcion" id="A6E32875-7396-06EB-DC0D-2272EECC72C6">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>67676A1F-AE21-AC8F-B61C-B8E98B9B8A45</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D4943BE5-73B3-59FA-65A7-FAC8177C1E8A" name="TIPO_CLASE_PK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>65CF9251-4215-93E2-113D-64331A5C051F</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4FF67900-E7CB-2828-2D0C-6D7B79E7F948"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

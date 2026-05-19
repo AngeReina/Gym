@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D5622305-4E77-407A-E9C1-6A2D46FEDC37" name="INSTRUCTOR">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>D2DC0199-016B-D402-8262-C233D2AE36CB</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Documento" id="7F6F8B92-8B02-4891-ED6B-7778548DEFB7">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>7DEC783D-C29B-D6A9-1E69-682864172CB4</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2072BC0F-FE17-8B8D-CF36-CA5F04AC39B4" referredColumn="3F323030-60D5-ADE9-5CC1-5D508DE73C6F"/>
+</associations>
+</Column>
+<Column name="id_instructor" id="E0CA423C-34E0-6399-1095-52BAA3E725A2">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>91042C92-25FB-70E9-971D-0F2098FCA73B</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="especialidad" id="DE907F93-ECBF-147F-CF68-881B56F712FE">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>C3F96552-9284-929D-E9DE-08D8B0840C63</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E4354A9D-1BD4-9507-D534-DCE499E56FC4" name="INSTRUCTOR_PK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>BF6F9704-FE75-7B95-8C70-A043761C904B</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7F6F8B92-8B02-4891-ED6B-7778548DEFB7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BF312F41-DC4C-E64A-39AA-3733ACF29A02" name="INSTRUCTOR_PKv1">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>1B1DD9F4-55D0-0C2C-C6C7-827D84D99D5D</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E0CA423C-34E0-6399-1095-52BAA3E725A2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="44D3AAB2-AC0C-E379-660D-757884E70D91" name="INSTRUCTOR_PERSONA_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>555866AC-08B7-2AD8-065F-2A3FFA884D1D</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7F6F8B92-8B02-4891-ED6B-7778548DEFB7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

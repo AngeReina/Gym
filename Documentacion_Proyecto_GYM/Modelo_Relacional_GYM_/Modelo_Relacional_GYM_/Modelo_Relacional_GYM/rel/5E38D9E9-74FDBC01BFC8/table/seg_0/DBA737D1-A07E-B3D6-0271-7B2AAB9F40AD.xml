@@ -1,0 +1,133 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DBA737D1-A07E-B3D6-0271-7B2AAB9F40AD" name="SESION_PROGRAMADA">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>A0AE7ED3-BA81-8ABB-E651-B785C616AB76</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_sesion" id="42ADF2CB-DBD8-02BD-0325-F121BD0141E7">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>36B30EB7-79D8-B50F-FC46-FF4E5B2EBD26</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha" id="9CDF5B30-435C-83A4-9221-EEFBBE36E80D">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>2C9E702E-C960-CC06-8A19-C45939B60A55</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="hora_inicio" id="63E9DE24-06E6-392A-D2A3-B2D38D52423F">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>CC3AADDE-B5B6-47BF-F671-DF1834329739</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="hora_fin" id="9592CC06-2F50-ECB0-B8DB-70DACE141726">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>FF0903AA-F451-0B42-48B2-0E243E8486CA</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cupo_max" id="858A944D-EECA-6326-1A35-E35A5725FD77">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>A0CCB5E2-0355-AEBF-8E3E-51B3FA85B0C4</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="INSTRUCTOR_id_instructor" id="83B2C84C-044E-378E-32F9-91BB142292F4">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>8545029B-178E-6BB2-F591-E904526DFF68</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9E41EBC0-5B4C-2A94-D98B-7E697349E0A0" referredColumn="E0CA423C-34E0-6399-1095-52BAA3E725A2"/>
+</associations>
+</Column>
+<Column name="TIPO_CLASE_id_tipo_clase" id="C93E67EC-32CA-94EF-1746-E431DA72CA9D">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>B18B4215-8FB6-F186-53EC-D911DAD49655</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="45319C17-0496-B7B9-A1F4-61EC86B426FB" referredColumn="4FF67900-E7CB-2828-2D0C-6D7B79E7F948"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3B89FCBA-EB41-F46C-CF9F-8353E99939A5" name="SESION_PROGRAMADA_PK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>ED5AD87C-471B-BF1D-2F5E-18D345709537</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="42ADF2CB-DBD8-02BD-0325-F121BD0141E7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EDC292C4-A085-D765-0D1A-DEB300146E03" name="SESION_PROGRAMADA_INSTRUCTOR_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>F2F84976-A68B-F898-C09F-19748099F648</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="83B2C84C-044E-378E-32F9-91BB142292F4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CCADBAF5-D6E7-CF3B-EB24-88977703A8B3" name="SESION_PROGRAMADA_TIPO_CLASE_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>2C7A4A47-A889-7D1E-023D-6F907168CE71</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C93E67EC-32CA-94EF-1746-E431DA72CA9D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

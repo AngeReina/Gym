@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A05F0265-36BF-0751-210C-8FB4F5C653C2" name="TRANSFERENCIA">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>5A96E99E-E894-5506-475B-34A02B06EC42</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_detalle_" id="6EB22C36-D0B3-893A-B858-142AB331FA8D">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>D2225C7B-9418-926B-48CB-414B211EC1CD</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1140DB2F-1293-2F9B-3DEA-049092CE7E6A" referredColumn="B6B66364-6856-5E4C-9FEA-C4841F2F57B4"/>
+</associations>
+</Column>
+<Column name="id_detalle" id="29A3A046-BE74-3E3F-ABB3-8E9187C3C94B">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>D5E968B5-7EC6-6488-4D1F-F7865FF7EBEA</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="banco_origen" id="D4DDF90F-1FBB-88E7-6BA5-001C4205B252">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>C86008BD-458E-9AA8-9F79-11E8133D6047</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="numero_transaccion" id="03DA3477-0B76-65E5-99A8-99759AEE85EA">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>122CC023-1162-A3B6-6951-77818DE53F94</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A0D0FE4B-DA18-131E-7E3D-1171AA899352" name="TRANSFERENCIA_PK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>06DAE9B6-9CA7-27EA-5F1D-D9EACF3D220A</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6EB22C36-D0B3-893A-B858-142AB331FA8D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F11A280E-B4C6-1B93-E5C5-D8D8BC513077" name="TRANSFERENCIA_PKv1">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>B99157A8-42EC-8DDD-18E3-A3D6B94A2ED3</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="29A3A046-BE74-3E3F-ABB3-8E9187C3C94B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="38176024-0CB8-7253-2048-2AD3CD3477A1" name="TRANSFERENCIA_METODO_PAGO_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>A1AFDED9-AE88-6297-B454-40D583C711CD</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6EB22C36-D0B3-893A-B858-142AB331FA8D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

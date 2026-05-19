@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="FA637259-35BF-B6C2-0950-B7E0EF4AE756" name="PERSONA">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 20:19:18 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Documento" id="7DEC783D-C29B-D6A9-1E69-682864172CB4">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 20:19:31 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nombre" id="F2FF6532-6EF6-BA10-3973-884F26D354CB">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 20:19:37 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="apellido" id="CF6A53A7-A10D-16D3-6DFF-EB3CB807667D">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 20:19:37 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="email" id="C52A4855-4C6B-4142-5C0E-AB7714C5C775">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 20:19:37 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="telefono" id="BFFF6756-82CE-C628-2AD3-F9B05E64BCD3">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 20:19:38 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="BF6F9704-FE75-7B95-8C70-A043761C904B" name="PERSONA PK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 20:19:41 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>7DEC783D-C29B-D6A9-1E69-682864172CB4</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

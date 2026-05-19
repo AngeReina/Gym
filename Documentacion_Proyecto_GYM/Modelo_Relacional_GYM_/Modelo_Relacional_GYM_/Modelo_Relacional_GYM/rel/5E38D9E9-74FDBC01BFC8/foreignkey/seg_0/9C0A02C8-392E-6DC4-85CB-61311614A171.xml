@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="9C0A02C8-392E-6DC4-85CB-61311614A171" containerWithKeyObject="B0B52DE1-6C76-BBC3-D2AE-A524B7F6202C" localFKIndex="341670BD-C6A2-BC96-041A-3A761DB29835" name="FACTURA_SUSCRIPCION_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>340B1680-EC60-C009-ACE7-7D0B463377C9</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<referredTableLongName>SUSCRIPCION</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>C45CDAD8-C26A-E3F3-D371-B24B536A3F2A</referredTableID>
+<keyObject>432C7D43-54F6-A579-D490-86B4FA3689E1</keyObject>
+<referredKeyID>432C7D43-54F6-A579-D490-86B4FA3689E1</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_suscripcion</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

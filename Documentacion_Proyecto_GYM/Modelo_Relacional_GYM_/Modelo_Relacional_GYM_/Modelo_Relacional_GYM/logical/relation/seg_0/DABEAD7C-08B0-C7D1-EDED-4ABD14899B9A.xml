@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Adquirir" directorySegmentName="seg_0" id="DABEAD7C-08B0-C7D1-EDED-4ABD14899B9A">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 16:06:52 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<sourcePk>3F9FEC38-481D-D02A-5B45-B32428BE610E</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>E5DA97A7-AC14-EF80-E04F-A12714002363</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A4B15760-A201-953C-1485-6ED0A59FDA7A</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

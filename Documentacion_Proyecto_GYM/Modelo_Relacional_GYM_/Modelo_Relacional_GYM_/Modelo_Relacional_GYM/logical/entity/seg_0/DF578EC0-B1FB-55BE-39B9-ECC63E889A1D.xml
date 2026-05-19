@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DF578EC0-B1FB-55BE-39B9-ECC63E889A1D" name="METODO_PAGO">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 21:38:41 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_detalle_" id="D2225C7B-9418-926B-48CB-414B211EC1CD">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 21:38:59 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="tipo_metodo" id="00B2C066-3C51-C845-AC6C-B4ED730095BD">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 21:38:59 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="monto_parcial" id="CE4288E5-4466-A949-050A-C301E687949E">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 21:38:59 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_pago" id="0853E426-DBDD-34BC-58C1-71B0E7D2E0A0">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 16:15:37 UTC</createdTime>
+<generatorID>0B3FA2E6-18A9-950A-2FF0-04BE6E7A693F</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<referedAttribute>6DE3B936-BE9C-6CEF-1370-F64532C009C0</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="06DAE9B6-9CA7-27EA-5F1D-D9EACF3D220A" name="METODO_PAGO PK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 21:44:10 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D2225C7B-9418-926B-48CB-414B211EC1CD</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

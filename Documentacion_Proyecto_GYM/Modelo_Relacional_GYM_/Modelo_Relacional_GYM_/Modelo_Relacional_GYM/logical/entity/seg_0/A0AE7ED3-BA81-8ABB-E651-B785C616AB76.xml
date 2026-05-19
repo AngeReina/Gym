@@ -1,0 +1,135 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A0AE7ED3-BA81-8ABB-E651-B785C616AB76" name="SESION_PROGRAMADA">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 21:09:09 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_sesion" id="36B30EB7-79D8-B50F-FC46-FF4E5B2EBD26">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 21:09:31 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="fecha" id="2C9E702E-C960-CC06-8A19-C45939B60A55">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 21:09:31 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="hora_inicio" id="CC3AADDE-B5B6-47BF-F671-DF1834329739">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 21:09:32 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="hora_fin" id="FF0903AA-F451-0B42-48B2-0E243E8486CA">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 21:09:32 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="cupo_max" id="A0CCB5E2-0355-AEBF-8E3E-51B3FA85B0C4">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 21:09:32 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_instructor" id="8545029B-178E-6BB2-F591-E904526DFF68">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 16:16:05 UTC</createdTime>
+<generatorID>F2F84976-A68B-F898-C09F-19748099F648</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<referedAttribute>91042C92-25FB-70E9-971D-0F2098FCA73B</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_asistencia" id="A9414A41-1CFF-8AC4-D143-A2C7727D95DB">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 16:19:04 UTC</createdTime>
+<generatorID>5492EC78-AF8A-6537-096F-C394C77F10A9</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<referedAttribute>199B4239-2421-9610-B28E-58AE17F991AB</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_tipo_clase" id="B18B4215-8FB6-F186-53EC-D911DAD49655">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 16:39:52 UTC</createdTime>
+<generatorID>2C7A4A47-A889-7D1E-023D-6F907168CE71</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<referedAttribute>7E9B1D8F-760A-3433-97F0-E55B0C07C038</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="ED5AD87C-471B-BF1D-2F5E-18D345709537" name="SESION_PROGRAMADA PK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 21:09:49 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>36B30EB7-79D8-B50F-FC46-FF4E5B2EBD26</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

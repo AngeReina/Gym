@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8FF157B1-CD8E-1022-67D1-9EFAA6354BC1" name="TARJETA">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>560CABE5-A031-C743-A632-CCD5D801AA80</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_detalle_" id="C31DC227-08E5-4E5C-53B3-0C6DE0C90AA9">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>D2225C7B-9418-926B-48CB-414B211EC1CD</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C1ECCEB1-D798-64C9-76C5-4AE1311EA9C5" referredColumn="B6B66364-6856-5E4C-9FEA-C4841F2F57B4"/>
+</associations>
+</Column>
+<Column name="id_detalle" id="2004072F-9AF7-4384-922C-C6F39D0A11F4">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>707F38D9-328F-B711-2F00-9665E19FF8C6</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="tipo_tarjeta" id="A816CAB4-30B5-D753-6DB7-5C29F3FDFB1A">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>21F9C82B-1561-CAF3-049C-75E0A2F828FF</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="franquicia" id="745B751D-4002-B72E-42A2-9C36AFAF2E4A">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>CB3AACA5-04C3-1460-773F-AB9086401D13</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="21AAEB87-2B81-46A1-BFDC-AF53E8F6BDF9" name="TARJETA_PK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>06DAE9B6-9CA7-27EA-5F1D-D9EACF3D220A</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C31DC227-08E5-4E5C-53B3-0C6DE0C90AA9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="979E00FB-C483-F622-A3FB-D4C1587FF1E8" name="TARJETA_PKv1">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>EFA6D0E2-3A8F-ABC5-E78D-D2F90B3B16B7</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2004072F-9AF7-4384-922C-C6F39D0A11F4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B1EE5A6A-F7CF-A671-F3D1-B4EA626FB6C8" name="TARJETA_METODO_PAGO_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>C8562425-C2C7-594B-8898-413532FE7A5A</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C31DC227-08E5-4E5C-53B3-0C6DE0C90AA9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

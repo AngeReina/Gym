@@ -1,0 +1,147 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C45CDAD8-C26A-E3F3-D371-B24B536A3F2A" name="SUSCRIPCION">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>A4B15760-A201-953C-1485-6ED0A59FDA7A</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_suscripcion" id="86259CC2-6091-DF20-55BD-B3D618397A7B">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>24E8BBDE-2ABD-8CE8-1CAD-30A702DAC1E0</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_inicio" id="F9811F5E-F8E6-457A-457E-CCDBA388AAE4">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>365567F3-8113-0816-2CF5-959EC7B3D5CC</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_fin" id="9EB729F7-CE79-B2FB-70DC-7695BD869C93">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>D2204FBC-7D67-0777-8FBC-72D8DDEF8A87</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="costo_pactado" id="FBF9DE0F-82BC-9F24-0F61-513E633ED7A4">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>F1DFFDB3-6F41-19C7-925E-3D0763E1E43F</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="estado_suscripcion" id="B230411E-1083-5FFC-C0F4-106407A2EE1E">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>AFB8AA4E-F6BC-D8F4-2944-1E0CA7AC7E28</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="beneficios" id="715939FD-A044-01A2-4225-1349458364F8">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>06DBC455-F033-1DFC-D506-71561DAC6ACD</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CLIENTE_id_cliente" id="6565F529-933F-8404-AB80-BDD0860B5D25">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>02A603B4-B894-7379-8CD2-F6170EBA37CF</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2AE3497F-F37B-E374-BEAD-FCE43B00332E" referredColumn="9C7945D2-6A0D-99E3-7444-AA4294FE7218"/>
+</associations>
+</Column>
+<Column name="PLAN_id_plan" id="3E5628B7-D6B8-0641-1A6F-D3840BFBDAE4">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>7720F0BD-AB2E-1274-74D4-1DC081E6893C</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5CC6A57A-3B3C-2343-D70A-A0C8CAB10BA9" referredColumn="EFC8FA20-4C28-C499-B875-A56546C67DF8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="432C7D43-54F6-A579-D490-86B4FA3689E1" name="SUSCRIPCION_PK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>AA76C96F-F06A-247C-8295-79C9D7D319F1</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="86259CC2-6091-DF20-55BD-B3D618397A7B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E12F42A2-12B3-0C2C-51CB-AC383EE0B50D" name="SUSCRIPCION_CLIENTE_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>DABEAD7C-08B0-C7D1-EDED-4ABD14899B9A</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6565F529-933F-8404-AB80-BDD0860B5D25"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="394C9238-965F-D5E3-6735-D44CF70D4007" name="SUSCRIPCION_PLAN_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>2A065216-C27C-88BD-6ABC-A46DB68825A0</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3E5628B7-D6B8-0641-1A6F-D3840BFBDAE4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

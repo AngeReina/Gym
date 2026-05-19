@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="AFILIAR" directorySegmentName="seg_0" id="2A065216-C27C-88BD-6ABC-A46DB68825A0">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 16:39:18 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<sourcePk>AA76C96F-F06A-247C-8295-79C9D7D319F1</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A4B15760-A201-953C-1485-6ED0A59FDA7A</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F917F694-C201-B669-1431-683928C881AA</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="9E41EBC0-5B4C-2A94-D98B-7E697349E0A0" containerWithKeyObject="DBA737D1-A07E-B3D6-0271-7B2AAB9F40AD" localFKIndex="EDC292C4-A085-D765-0D1A-DEB300146E03" name="SESION_PROGRAMADA_INSTRUCTOR_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>F2F84976-A68B-F898-C09F-19748099F648</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<referredTableLongName>INSTRUCTOR</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>D5622305-4E77-407A-E9C1-6A2D46FEDC37</referredTableID>
+<keyObject>BF312F41-DC4C-E64A-39AA-3733ACF29A02</keyObject>
+<referredKeyID>BF312F41-DC4C-E64A-39AA-3733ACF29A02</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_instructor</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

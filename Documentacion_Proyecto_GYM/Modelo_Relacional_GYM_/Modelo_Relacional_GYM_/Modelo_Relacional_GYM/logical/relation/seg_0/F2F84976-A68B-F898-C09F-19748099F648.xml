@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="IMPARTIR" directorySegmentName="seg_0" id="F2F84976-A68B-F898-C09F-19748099F648">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 16:16:05 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<sourcePk>1B1DD9F4-55D0-0C2C-C6C7-827D84D99D5D</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>D2DC0199-016B-D402-8262-C233D2AE36CB</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A0AE7ED3-BA81-8ABB-E651-B785C616AB76</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="5CC6A57A-3B3C-2343-D70A-A0C8CAB10BA9" containerWithKeyObject="C45CDAD8-C26A-E3F3-D371-B24B536A3F2A" localFKIndex="394C9238-965F-D5E3-6735-D44CF70D4007" name="SUSCRIPCION_PLAN_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>2A065216-C27C-88BD-6ABC-A46DB68825A0</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<referredTableLongName>PLAN</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>A9FD05D8-C8A4-41FE-EFA5-B8468DF96492</referredTableID>
+<keyObject>4C5674B7-7729-C202-24C8-253DB776625F</keyObject>
+<referredKeyID>4C5674B7-7729-C202-24C8-253DB776625F</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_plan</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

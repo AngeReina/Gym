@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B0D52197-AEB0-D819-FD17-73A852A9B387" name="ASISTENCIA">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>4DCB2DC8-BC86-F5C1-9584-284D3BB04FD9</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_asistencia" id="D78BA0D8-C727-A4CD-CACE-A2A313DA7E55">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>199B4239-2421-9610-B28E-58AE17F991AB</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_registro" id="7F166B0A-9502-CEBA-C5D3-DBDACA463142">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>21012B76-CAE5-01B8-1424-7699D0D11C50</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="estado_asistencia" id="BB70E695-2DD0-494F-F1E6-27416B44700C">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>4FC936AF-1A3E-6CA2-F509-FD160512583E</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CLIENTE_id_cliente" id="8F830F99-9D86-2045-DB1A-DBF4AF819E94">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>D0592599-6774-53B7-A572-5DC203ECA434</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EDDDC017-8CF5-4194-4304-B5C50C209302" referredColumn="9C7945D2-6A0D-99E3-7444-AA4294FE7218"/>
+</associations>
+</Column>
+<Column name="SESION_PROGRAMADA_id_sesion" id="A765FCF9-04E2-F968-9B80-83D300BE763E">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>7F6A84BB-8700-DD06-0B80-D07D3A6737E7</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9850816F-4061-7CAB-04B7-CAC59FE6C225" referredColumn="42ADF2CB-DBD8-02BD-0325-F121BD0141E7"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E42B40B9-C4E3-2699-7137-F509AD7ACACA" name="ASISTENCIA_PK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>9E19FE08-506C-FCA3-C79C-AAB15224349C</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D78BA0D8-C727-A4CD-CACE-A2A313DA7E55"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3BFD4C34-0E8E-78A1-81A7-70E49CFCEBB8" name="ASISTENCIA_SESION_PROGRAMADA_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>5492EC78-AF8A-6537-096F-C394C77F10A9</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A765FCF9-04E2-F968-9B80-83D300BE763E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="456BF580-9430-A891-A14E-B485AEA4410C" name="ASISTENCIA_CLIENTE_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>6540F11A-DDFE-6F9D-A61C-5729A7456CAD</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8F830F99-9D86-2045-DB1A-DBF4AF819E94"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

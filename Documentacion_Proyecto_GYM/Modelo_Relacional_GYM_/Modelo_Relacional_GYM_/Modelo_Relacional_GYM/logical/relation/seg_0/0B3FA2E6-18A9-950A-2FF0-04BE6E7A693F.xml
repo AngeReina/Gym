@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="DIVIDIR" directorySegmentName="seg_0" id="0B3FA2E6-18A9-950A-2FF0-04BE6E7A693F">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 16:15:09 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<sourcePk>547FBFC8-2E81-6EC5-7F58-09DDFE655A94</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>DFED433F-DC92-85A2-C909-40D8B580582E</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DF578EC0-B1FB-55BE-39B9-ECC63E889A1D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

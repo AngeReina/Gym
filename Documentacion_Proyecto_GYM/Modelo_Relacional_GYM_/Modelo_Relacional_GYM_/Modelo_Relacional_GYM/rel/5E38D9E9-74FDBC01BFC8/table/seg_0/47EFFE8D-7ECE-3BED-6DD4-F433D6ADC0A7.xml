@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="47EFFE8D-7ECE-3BED-6DD4-F433D6ADC0A7" name="CLIENTE">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>E5DA97A7-AC14-EF80-E04F-A12714002363</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Documento" id="B104C452-5DE0-D462-7D63-9AEEE961E30D">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>7DEC783D-C29B-D6A9-1E69-682864172CB4</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BC0AD50D-CCB6-71ED-CECA-0EB71EA63FAF" referredColumn="3F323030-60D5-ADE9-5CC1-5D508DE73C6F"/>
+</associations>
+</Column>
+<Column name="id_cliente" id="9C7945D2-6A0D-99E3-7444-AA4294FE7218">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>97058F7F-2767-7890-D2B3-FB5CB522E7EA</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="697FC398-FAD5-5A87-0E74-7EEFB941075F" name="CLIENTE_PK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>BF6F9704-FE75-7B95-8C70-A043761C904B</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B104C452-5DE0-D462-7D63-9AEEE961E30D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DCC73297-F202-FC26-41E7-D434F33CEEB0" name="CLIENTE_PKv1">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>3F9FEC38-481D-D02A-5B45-B32428BE610E</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9C7945D2-6A0D-99E3-7444-AA4294FE7218"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="93556347-79C6-07B6-27DF-70D1C34DC7DA" name="CLIENTE_PERSONA_FK">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 17:22:08 UTC</createdTime>
+<generatorID>909068D8-010C-A320-C026-1C5F1B585150</generatorID>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B104C452-5DE0-D462-7D63-9AEEE961E30D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

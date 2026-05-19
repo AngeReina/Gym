@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="Modelo_Relacional_GYM" id="76CCD52B-18F8-87FA-280F-26639056E5B4" version="3.5">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-05 20:18:21 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>76CCD52B-18F8-87FA-280F-26639056E5B4</designId>
+</OSDM_Design>

@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="LIQUIDAR" directorySegmentName="seg_0" id="323A7F51-1C62-4A44-A5C2-A37A7EBE2635">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 16:14:21 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<sourcePk>A5404B49-16B5-DBF7-DDD0-08EFDECB720A</sourcePk>
+<targetPk>547FBFC8-2E81-6EC5-7F58-09DDFE655A94</targetPk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>7FD96A75-4BA8-6FD0-D9BE-617E8308B8D5</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>DFED433F-DC92-85A2-C909-40D8B580582E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

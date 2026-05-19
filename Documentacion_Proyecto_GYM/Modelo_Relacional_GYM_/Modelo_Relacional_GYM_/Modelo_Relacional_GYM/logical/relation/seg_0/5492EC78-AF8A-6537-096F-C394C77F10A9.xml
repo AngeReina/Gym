@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="RECIBIR" directorySegmentName="seg_0" id="5492EC78-AF8A-6537-096F-C394C77F10A9">
+<createdBy>USER</createdBy>
+<createdTime>2026-05-07 16:19:04 UTC</createdTime>
+<ownerDesignName>Modelo_Relacional_GYM</ownerDesignName>
+<engineerTo>
+<item key="5E38D9E9-A8D4-F61A-AA77-74FDBC01BFC8" value="true"/>
+</engineerTo>
+<sourcePk>ED5AD87C-471B-BF1D-2F5E-18D345709537</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A0AE7ED3-BA81-8ABB-E651-B785C616AB76</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4DCB2DC8-BC86-F5C1-9584-284D3BB04FD9</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
